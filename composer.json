@@ -1,0 +1,19 @@
+{
+    "name": "abdallah/ecommerce",
+    "description": "mosataf kamal",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Abdallah\\Ecommerce\\": "App/"
+        }
+    },
+    "authors": [
+        {
+            "name": "abdallah",
+            "email": "abdallahmatar10@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
