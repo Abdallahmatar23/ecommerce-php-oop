@@ -18,12 +18,12 @@ $route = match ($page) {
     'add-product'     => './App/views/admin/edit-product.php',
     'update-product'  => './App/views/admin/edit-product.php',
     'product-details' => './App/views/store/product-details.php',
-    '404' => './App/views/store/404.php'
+    '404'             => './App/views/store/404.php'
 };
 
 
 
-$adminPages = ['dashboard', 'products', 'add-product', 'update-product', 'product-details'];
+$adminPages = ['dashboard', 'products', 'add-product', 'update-product'];
 $storePages = ['home', ' product-details'];
 
 if (in_array($page, $adminPages)) {
