@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 21, 2026 at 10:43 AM
+-- Generation Time: May 21, 2026 at 05:39 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -143,11 +143,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `price`, `description`, `image_url`, `stock`, `discount`, `created_at`, `updated_at`) VALUES
-(1, 'Nike Air Max', '3500.00', 'Comfortable Nike sneakers for everyday use', 'nike-air-max.jpg', 15, '0.20', '2026-05-21 10:42:41', '2026-05-21 10:42:41'),
-(2, 'Apple AirPods Pro', '6200.00', 'Wireless noise cancellation earbuds', 'airpods-pro.jpg', 10, '0.20', '2026-05-21 10:42:41', '2026-05-21 10:42:41'),
-(3, 'Black Hoodie', '950.00', 'Premium cotton oversized hoodie', 'black-hoodie.jpg', 25, '0.20', '2026-05-21 10:42:41', '2026-05-21 10:42:41'),
-(4, 'Gaming Mouse RGB', '1200.00', 'High precision RGB gaming mouse', 'gaming-mouse.jpg', 18, '0.20', '2026-05-21 10:42:41', '2026-05-21 10:42:41'),
-(5, 'Smart Watch', '4200.00', 'Water resistant smart watch with fitness tracking', 'smart-watch.jpg', 12, '0.30', '2026-05-21 10:42:41', '2026-05-21 10:42:41');
+(1, 'Nike Air Max', '3500.00', 'Comfortable Nike sneakers for everyday use', 'public/assets/store/assets/img/about/shipping1.png', 15, '0.20', '2026-05-21 10:42:41', '2026-05-21 17:19:30'),
+(2, 'Apple AirPods Pro', '6200.00', 'Wireless noise cancellation earbuds', 'public/assets/store/assets/img/about/shipping2.png', 10, '0.20', '2026-05-21 10:42:41', '2026-05-21 17:19:42'),
+(3, 'Black Hoodie', '950.00', 'Premium cotton oversized hoodie', 'public/assets/store/assets/img/about/shipping3.png', 25, '0.20', '2026-05-21 10:42:41', '2026-05-21 17:19:54'),
+(4, 'Gaming Mouse RGB', '1200.00', 'High precision RGB gaming mouse', 'public/assets/store/assets/img/about/shipping4.png', 18, '0.20', '2026-05-21 10:42:41', '2026-05-21 17:20:12'),
+(5, 'Smart Watch', '4200.00', 'Water resistant smart watch with fitness tracking', 'public/assets/store/assets/img/product/tranding-3.jpg', 12, '0.30', '2026-05-21 10:42:41', '2026-05-21 17:21:14');
 
 -- --------------------------------------------------------
 
