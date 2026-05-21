@@ -17,7 +17,7 @@ $products = (new Product)->getAll();
                             <h1>Next level of Drone</h1>
                             <h2>Insane Quality for use</h2>
                             <p>Special offer <span> 20% off </span> this week</p>
-                            <a class="button" href="product-details.html">Buy now</a>
+                            <a class="button" href="index.php?page=product-details">Buy now</a>
                         </div>
                     </div>
                     <div class="col-xl-6 col-md-6">
@@ -37,7 +37,7 @@ $products = (new Product)->getAll();
                             <h1>Best Camera Included</h1>
                             <h2>100% Flexible</h2>
                             <p>exclusive offer <span> 20% off </span> this week</p>
-                            <a class="button" href="product-details.html">Shop now</a>
+                            <a class="button" href="index.php?page=product-details">Shop now</a>
                         </div>
                     </div>
                     <div class="col-xl-6 col-md-6">
@@ -56,7 +56,7 @@ $products = (new Product)->getAll();
                             <h1>With some gifts</h1>
                             <h2>Special one for you</h2>
                             <p>exclusive offer <span> 20% off </span> this week</p>
-                            <a class="button" href="product-details.html">shopping now</a>
+                            <a class="button" href="index.php?page=product-details">shopping now</a>
                         </div>
                     </div>
                     <div class="col-xl-6 col-md-6">
@@ -85,7 +85,7 @@ $products = (new Product)->getAll();
             <?php foreach ($products as $product): ?>
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                     <div class="single-tranding mb-30">
-                        <a href="index.php?page=product-details">
+                        <a href="index.php?page=product-details&id=<?= $product['id'] ?>">
                             <div class="tranding-pro-img">
                                 <img src="<?= $product['image_url'] ?>" alt="">
                             </div>
@@ -211,7 +211,7 @@ $products = (new Product)->getAll();
             <?php foreach ($products as $product): ?>
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                     <div class="single-tranding mb-30">
-                        <a href="index.php?page=product-details">
+                        <a href="index.php?page=product-details&id=<?= $product['id'] ?>">
                             <div class="tranding-pro-img">
                                 <img src="<?= $product['image_url'] ?>" alt="">
                             </div>
