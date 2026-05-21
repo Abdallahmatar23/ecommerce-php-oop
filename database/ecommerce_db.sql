@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 15, 2026 at 10:50 PM
+-- Generation Time: May 21, 2026 at 10:43 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -133,6 +133,7 @@ CREATE TABLE `products` (
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `image_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `stock` int NOT NULL DEFAULT '0',
+  `discount` decimal(2,2) NOT NULL DEFAULT '0.00',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -141,12 +142,12 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `price`, `description`, `image_url`, `stock`, `created_at`, `updated_at`) VALUES
-(1, 'Nike Air Max', '3500.00', 'Comfortable Nike sneakers for everyday use', 'nike-air-max.jpg', 15, '2026-05-13 16:48:05', '2026-05-13 16:48:05'),
-(2, 'Apple AirPods Pro', '6200.00', 'Wireless noise cancellation earbuds', 'airpods-pro.jpg', 10, '2026-05-13 16:48:05', '2026-05-13 16:48:05'),
-(3, 'Black Hoodie', '950.00', 'Premium cotton oversized hoodie', 'black-hoodie.jpg', 25, '2026-05-13 16:48:05', '2026-05-13 16:48:05'),
-(4, 'Gaming Mouse RGB', '1200.00', 'High precision RGB gaming mouse', 'gaming-mouse.jpg', 18, '2026-05-13 16:48:05', '2026-05-13 16:48:05'),
-(5, 'Smart Watch', '4200.00', 'Water resistant smart watch with fitness tracking', 'smart-watch.jpg', 12, '2026-05-13 16:48:05', '2026-05-13 16:48:05');
+INSERT INTO `products` (`id`, `name`, `price`, `description`, `image_url`, `stock`, `discount`, `created_at`, `updated_at`) VALUES
+(1, 'Nike Air Max', '3500.00', 'Comfortable Nike sneakers for everyday use', 'nike-air-max.jpg', 15, '0.20', '2026-05-21 10:42:41', '2026-05-21 10:42:41'),
+(2, 'Apple AirPods Pro', '6200.00', 'Wireless noise cancellation earbuds', 'airpods-pro.jpg', 10, '0.20', '2026-05-21 10:42:41', '2026-05-21 10:42:41'),
+(3, 'Black Hoodie', '950.00', 'Premium cotton oversized hoodie', 'black-hoodie.jpg', 25, '0.20', '2026-05-21 10:42:41', '2026-05-21 10:42:41'),
+(4, 'Gaming Mouse RGB', '1200.00', 'High precision RGB gaming mouse', 'gaming-mouse.jpg', 18, '0.20', '2026-05-21 10:42:41', '2026-05-21 10:42:41'),
+(5, 'Smart Watch', '4200.00', 'Water resistant smart watch with fitness tracking', 'smart-watch.jpg', 12, '0.30', '2026-05-21 10:42:41', '2026-05-21 10:42:41');
 
 -- --------------------------------------------------------
 
