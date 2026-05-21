@@ -24,7 +24,7 @@ $route = match ($page) {
 
 
 $adminPages = ['dashboard', 'products', 'add-product', 'update-product'];
-$storePages = ['home', ' product-details'];
+$storePages = ['home', 'product-details'];
 
 if (in_array($page, $adminPages)) {
     require 'App/views/layout/admin/sidebar.php';
