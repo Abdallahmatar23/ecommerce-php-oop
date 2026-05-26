@@ -5,19 +5,28 @@ require_once 'Config\db.php';
 // var_dump(class_exists(\App\Classes\Models\Product::class));
 // die;
 
-use App\Classes\Models\Product\Product;
-use App\Classes\Core\Database\Database;
+use App\Classes\Models\Product;
+use App\Classes\Core\Database;
 
 
 $page = $_GET['page'] ?? 'home';
+$page = explode('&', $page)[0];
+
+$db = new Database;
+$pdo = $db->connect();
 
 $route = match ($page) {
     'home'            => './App/views/store/home.php',
     'dashboard'       => './App/views/admin/dashboard.php',
     'products'        => './App/views/admin/products.php',
-    'add-product'     => './App/views/admin/edit-product.php',
+    'add-product'     => './App/views/admin/add-product.php',
     'update-product'  => './App/views/admin/edit-product.php',
     'product-details' => './App/views/store/product-details.php',
+    // 'view-products' => (new ProductController($repo))->index(),
+    // 'create-product' => ((new ProductController($repo))->create()),
+    // 'add-product' => ((new ProductController($repo))->store()),
+    // 'update-product'  => ((new ProductController($repo))->update()),
+    // 'delete-product' => ((new ProductController($repo))->delete()),
     '404'             => './App/views/store/404.php'
 };
 

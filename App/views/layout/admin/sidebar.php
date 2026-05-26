@@ -365,6 +365,11 @@
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
+            <a href="index.php?page=add-product" class="">
+              <i class="bi bi-circle"></i><span>Add Product Form</span>
+            </a>
+          </li>
+          <li>
             <a href="forms-elements.html">
               <i class="bi bi-circle"></i><span>Form Elements</span>
             </a>
@@ -398,12 +403,12 @@
             </a>
           </li>
           <li>
-            <a href="tables-data.html" class="active">
+            <a href="tables-data.html" class="">
               <i class="bi bi-circle"></i><span>Data Tables</span>
             </a>
           </li>
           <li>
-            <a href="index.php?page=products" class="active">
+            <a href="index.php?page=products" >
               <i class="bi bi-circle"></i><span>Products Table</span>
             </a>
           </li>
