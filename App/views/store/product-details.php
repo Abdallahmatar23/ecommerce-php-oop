@@ -1,9 +1,10 @@
 <?php
 
-use App\Classes\Models\Product;
-
-$id = $_GET['id'];
-$product = (new Product())->getById($id);
+use App\Models\Product;
+// var_dump($product);
+// die();
+// $id = $_GET['id'];
+// $product = (new Product())->getById($id);
 // echo $id;
 // die();
 ?>
@@ -17,32 +18,32 @@ $product = (new Product())->getById($id);
                 <div class="product-details-tab">
                     <div id="img-1" class="zoomWrapper single-zoom">
                         <a href="#">
-                            <img id="zoom1" src="public/assets/store/assets/img/product/details-1.jpg" data-zoom-image="public/assets/store/assets/img/product/details-1.jpg" alt="big-1">
+                            <img id="zoom1" src="assets/store/assets/img/product/details-1.jpg" data-zoom-image="assets/store/assets/img/product/details-1.jpg" alt="big-1">
                         </a>
                     </div>
                     <div class="single-zoom-thumb">
                         <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
                             <li>
-                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="public/assets/store/assets/img/product/details-2.jpg" data-zoom-image="public/assets/store/assets/img/product/details-2.jpg">
-                                    <img src="public/assets/store/assets/img/product/details-2.jpg" alt="zo-th-1" />
+                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/store/assets/img/product/details-2.jpg" data-zoom-image="assets/store/assets/img/product/details-2.jpg">
+                                    <img src="assets/store/assets/img/product/details-2.jpg" alt="zo-th-1" />
                                 </a>
 
                             </li>
                             <li>
-                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="public/assets/store/assets/img/product/details-3.jpg" data-zoom-image="public/assets/store/assets/img/product/details-3.jpg">
-                                    <img src="public/assets/store/assets/img/product/details-3.jpg" alt="zo-th-1" />
+                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/store/assets/img/product/details-3.jpg" data-zoom-image="assets/store/assets/img/product/details-3.jpg">
+                                    <img src="assets/store/assets/img/product/details-3.jpg" alt="zo-th-1" />
                                 </a>
 
                             </li>
                             <li>
-                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="public/assets/store/assets/img/product/details-4.jpg" data-zoom-image="public/assets/store/assets/img/product/details-4.jpg">
-                                    <img src="public/assets/store/assets/img/product/details-4.jpg" alt="zo-th-1" />
+                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/store/assets/img/product/details-4.jpg" data-zoom-image="assets/store/assets/img/product/details-4.jpg">
+                                    <img src="assets/store/assets/img/product/details-4.jpg" alt="zo-th-1" />
                                 </a>
 
                             </li>
                             <li>
-                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="public/assets/store/assets/img/product/details-1.jpg" data-zoom-image="public/assets/store/assets/img/product/details-1.jpg">
-                                    <img src="public/assets/store/assets/img/product/details-1.jpg" alt="zo-th-1" />
+                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/store/assets/img/product/details-1.jpg" data-zoom-image="assets/store/assets/img/product/details-1.jpg">
+                                    <img src="assets/store/assets/img/product/details-1.jpg" alt="zo-th-1" />
                                 </a>
 
                             </li>
@@ -188,7 +189,7 @@ $product = (new Product())->getById($id);
                                 <h2>1 review for Donec eu furniture</h2>
                                 <div class="reviews_comment_box">
                                     <div class="comment_thmb">
-                                        <img src="public/assets/store/assets/img/blog/comment2.jpg" alt="">
+                                        <img src="assets/store/assets/img/blog/comment2.jpg" alt="">
                                     </div>
                                     <div class="comment_text">
                                         <div class="reviews_meta">

@@ -11,7 +11,8 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <form method="POST" action="index.php?page=add-product" enctype="multipart/form-data">
+                        <form method="POST" action="<?= BASE_URL ?>product/store" enctype="multipart/form-data">
+                        <!-- <form method="POST" action="http://localhost/ecommerce/public/product/store" enctype="multipart/form-data"> -->
 
                             <div class="row mb-3 mt-3">
                                 <label class="col-sm-2 col-form-label">Name</label>

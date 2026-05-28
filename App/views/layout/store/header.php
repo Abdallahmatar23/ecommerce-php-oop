@@ -10,18 +10,18 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="public/assets/store/assets/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon"  href="assets/store/assets/img/favicon.ico">
 
     <!-- CSS 
     ========================= -->
 
 
     <!-- Plugins CSS -->
-    <link rel="stylesheet" href="public/assets/store/assets/css/plugins.css">
+    <link rel="stylesheet"  href="assets/store/assets/css/plugins.css">
 
     <!-- Main Style CSS -->
-    <link rel="stylesheet" href="public/assets/store/assets/css/style.css">
-    <link rel="stylesheet" href="public/assets/store/assets/css/custom.css">
+    <link rel="stylesheet"  href="assets/store/assets/css/style.css">
+    <link rel="stylesheet"  href="assets/store/assets/css/custom.css">
 
 </head>
 
@@ -37,19 +37,19 @@
             <div class="row">
                 <div class="col-12">
                     <div class="canvas_open">
-                        <a href="javascript:void(0)"><i class="ion-navicon"></i></a>
+                        <a  href="<?= BASE_URL?>javascript:void(0)"><i class="ion-navicon"></i></a>
                     </div>
                     <div class="Offcanvas_menu_wrapper">
                         <div class="canvas_close">
-                            <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                            <a  href="<?= BASE_URL?>javascript:void(0)"><i class="ion-android-close"></i></a>
                         </div>
                         <div class="support_info">
-                            <p>Any Enquiry: <a href="tel:">+56985475235</a></p>
+                            <p>Any Enquiry: <a  href="<?= BASE_URL?>tel:">+56985475235</a></p>
                         </div>
                         <div class="top_right text-right">
                             <ul>
-                                <li><a href="my-account.html"> My Account </a></li>
-                                <li><a href="checkout.html"> Checkout </a></li>
+                                <li><a  href="<?= BASE_URL?>my-account "> My Account </a></li>
+                                <li><a  href="<?= BASE_URL?>checkout "> Checkout </a></li>
                             </ul>
                         </div>
                         <div class="search_container">
@@ -63,35 +63,35 @@
 
                         <div class="middel_right_info">
                             <div class="header_wishlist">
-                                <a href="wishlist.html"><img src="public/assets/store/assets/img/user.png" alt=""></a>
+                                <a  href="<?= BASE_URL?>wishlist "><img src="assets/store/assets/img/user.png" alt=""></a>
                             </div>
                             <div class="mini_cart_wrapper">
-                                <a href="javascript:void(0)"><img src="public/assets/store/assets/img/shopping-bag.png" alt=""></a>
+                                <a  href="<?= BASE_URL?>javascript:void(0)"><img src="assets/store/assets/img/shopping-bag.png" alt=""></a>
                                 <span class="cart_quantity">2</span>
                                 <!--mini cart-->
                                 <div class="mini_cart">
                                     <div class="cart_item">
                                         <div class="cart_img">
-                                            <a href="#"><img src="public/assets/store/assets/img/s-product/product.jpg" alt=""></a>
+                                            <a  href="<?= BASE_URL?>#"><img src="assets/store/assets/img/s-product/product.jpg" alt=""></a>
                                         </div>
                                         <div class="cart_info">
-                                            <a href="#">Sit voluptatem rhoncus sem lectus</a>
+                                            <a  href="<?= BASE_URL?>#">Sit voluptatem rhoncus sem lectus</a>
                                             <p>Qty: 1 X <span> $60.00 </span></p>
                                         </div>
                                         <div class="cart_remove">
-                                            <a href="#"><i class="ion-android-close"></i></a>
+                                            <a  href="<?= BASE_URL?>#"><i class="ion-android-close"></i></a>
                                         </div>
                                     </div>
                                     <div class="cart_item">
                                         <div class="cart_img">
-                                            <a href="#"><img src="public/assets/store/assets/img/s-product/product2.jpg" alt=""></a>
+                                            <a  href="<?= BASE_URL?>#"><img src="assets/store/assets/img/s-product/product2.jpg" alt=""></a>
                                         </div>
                                         <div class="cart_info">
-                                            <a href="#">Natus erro at congue massa commodo</a>
+                                            <a  href="<?= BASE_URL?>#">Natus erro at congue massa commodo</a>
                                             <p>Qty: 1 X <span> $60.00 </span></p>
                                         </div>
                                         <div class="cart_remove">
-                                            <a href="#"><i class="ion-android-close"></i></a>
+                                            <a  href="<?= BASE_URL?>#"><i class="ion-android-close"></i></a>
                                         </div>
                                     </div>
                                     <div class="mini_cart_table">
@@ -107,10 +107,10 @@
 
                                     <div class="mini_cart_footer">
                                         <div class="cart_button">
-                                            <a href="cart.html">View cart</a>
+                                            <a  href="<?= BASE_URL?>cart ">View cart</a>
                                         </div>
                                         <div class="cart_button">
-                                            <a href="checkout.html">Checkout</a>
+                                            <a  href="<?= BASE_URL?>checkout ">Checkout</a>
                                         </div>
 
                                     </div>
@@ -122,51 +122,51 @@
                         <div id="menu" class="text-left ">
                             <ul class="offcanvas_main_menu">
                                 <li class="menu-item-has-children active">
-                                    <a href="#">Home</a>
+                                    <a  href="<?= BASE_URL?>#">Home</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="product-details.html">product</a>
+                                    <a  href="<?= BASE_URL?>product-details ">product</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="#">pages </a>
+                                    <a  href="<?= BASE_URL?>#">pages </a>
                                     <ul class="sub-menu">
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="contact.html">contact</a></li>
-                                        <li><a href="privacy-policy.html">privacy policy</a></li>
-                                        <li><a href="faq.html">Frequently Questions</a></li>
-                                        <li><a href="login.html">login</a></li>
-                                        <li><a href="register.html">register</a></li>
-                                        <li><a href="forget-password.html">Forget Password</a></li>
-                                        <li><a href="404.html">Error 404</a></li>
-                                        <li><a href="cart.html">cart</a></li>
-                                        <li><a href="tracking.html">tracking</a></li>
-                                        <li><a href="checkout.html">checkout</a></li>
+                                        <li><a  href="<?= BASE_URL?>about ">About Us</a></li>
+                                        <li><a  href="<?= BASE_URL?>contact ">contact</a></li>
+                                        <li><a  href="<?= BASE_URL?>privacy-policy ">privacy policy</a></li>
+                                        <li><a  href="<?= BASE_URL?>faq ">Frequently Questions</a></li>
+                                        <li><a  href="<?= BASE_URL?>login ">login</a></li>
+                                        <li><a  href="<?= BASE_URL?>register ">register</a></li>
+                                        <li><a  href="<?= BASE_URL?>forget-password ">Forget Password</a></li>
+                                        <li><a  href="<?= BASE_URL?>404 ">Error 404</a></li>
+                                        <li><a  href="<?= BASE_URL?>cart ">cart</a></li>
+                                        <li><a  href="<?= BASE_URL?>tracking ">tracking</a></li>
+                                        <li><a  href="<?= BASE_URL?>checkout ">checkout</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="#">blog</a>
+                                    <a  href="<?= BASE_URL?>#">blog</a>
                                     <ul class="sub-menu">
-                                        <li><a href="blog.html">blog</a></li>
-                                        <li><a href="blog-details.html">blog details</a></li>
+                                        <li><a  href="<?= BASE_URL?>blog ">blog</a></li>
+                                        <li><a  href="<?= BASE_URL?>blog-details ">blog details</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="login.html">my account</a>
+                                    <a  href="<?= BASE_URL?>login ">my account</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="contact.html"> Contact Us</a>
+                                    <a  href="<?= BASE_URL?>contact "> Contact Us</a>
                                 </li>
                             </ul>
                         </div>
 
                         <div class="Offcanvas_footer">
-                            <span><a href="#"><i class="fa fa-envelope-o"></i> info@drophunt.com</a></span>
+                            <span><a  href="<?= BASE_URL?>#"><i class="fa fa-envelope-o"></i> info@drophunt.com</a></span>
                             <ul>
-                                <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li class="pinterest"><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                                <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="facebook"><a  href="<?= BASE_URL?>#"><i class="fa fa-facebook"></i></a></li>
+                                <li class="twitter"><a  href="<?= BASE_URL?>#"><i class="fa fa-twitter"></i></a></li>
+                                <li class="pinterest"><a  href="<?= BASE_URL?>#"><i class="fa fa-pinterest-p"></i></a></li>
+                                <li class="google-plus"><a  href="<?= BASE_URL?>#"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="linkedin"><a  href="<?= BASE_URL?>#"><i class="fa fa-linkedin"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -184,14 +184,14 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-md-6">
                             <div class="support_info">
-                                <p>Email: <a href="mailto:">support@drophunt.com</a></p>
+                                <p>Email: <a  href="<?= BASE_URL?>mailto:">support@drophunt.com</a></p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="top_right text-right">
                                 <ul>
-                                    <li><a href="my-account.html">Account</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
+                                    <li><a  href="<?= BASE_URL?>my-account ">Account</a></li>
+                                    <li><a  href="<?= BASE_URL?>checkout ">Checkout</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -205,7 +205,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-md-6">
                             <div class="logo">
-                                <a href="index.php?page=home"><img src="public/assets/store/assets/img/logo/logo.png" alt=""></a>
+                                <a  href="<?= BASE_URL?>home"><img src="assets/store/assets/img/logo/logo.png" alt=""></a>
                             </div>
                         </div>
                         <div class="col-lg-9 col-md-6">
@@ -220,35 +220,35 @@
                                 </div>
                                 <div class="middel_right_info">
                                     <div class="header_wishlist">
-                                        <a href="#"><img src="public/assets/store/assets/img/user.png" alt=""></a>
+                                        <a  href="<?= BASE_URL?>#"><img src="assets/store/assets/img/user.png" alt=""></a>
                                     </div>
                                     <div class="mini_cart_wrapper">
-                                        <a href="javascript:void(0)"><img src="public/assets/store/assets/img/shopping-bag.png" alt=""></a>
+                                        <a  href="<?= BASE_URL?>javascript:void(0)"><img src="assets/store/assets/img/shopping-bag.png" alt=""></a>
                                         <span class="cart_quantity">2</span>
                                         <!--mini cart-->
                                         <div class="mini_cart">
                                             <div class="cart_item">
                                                 <div class="cart_img">
-                                                    <a href="#"><img src="public/assets/store/assets/img/s-product/product.jpg" alt=""></a>
+                                                    <a  href="<?= BASE_URL?>#"><img src="assets/store/assets/img/s-product/product.jpg" alt=""></a>
                                                 </div>
                                                 <div class="cart_info">
-                                                    <a href="#">Sit voluptatem rhoncus sem lectus</a>
+                                                    <a  href="<?= BASE_URL?>#">Sit voluptatem rhoncus sem lectus</a>
                                                     <p>Qty: 1 X <span> $60.00 </span></p>
                                                 </div>
                                                 <div class="cart_remove">
-                                                    <a href="#"><i class="ion-android-close"></i></a>
+                                                    <a  href="<?= BASE_URL?>#"><i class="ion-android-close"></i></a>
                                                 </div>
                                             </div>
                                             <div class="cart_item">
                                                 <div class="cart_img">
-                                                    <a href="#"><img src="public/assets/store/assets/img/s-product/product2.jpg" alt=""></a>
+                                                    <a  href="<?= BASE_URL?>#"><img src="assets/store/assets/img/s-product/product2.jpg" alt=""></a>
                                                 </div>
                                                 <div class="cart_info">
-                                                    <a href="#">Natus erro at congue massa commodo</a>
+                                                    <a  href="<?= BASE_URL?>#">Natus erro at congue massa commodo</a>
                                                     <p>Qty: 1 X <span> $60.00 </span></p>
                                                 </div>
                                                 <div class="cart_remove">
-                                                    <a href="#"><i class="ion-android-close"></i></a>
+                                                    <a  href="<?= BASE_URL?>#"><i class="ion-android-close"></i></a>
                                                 </div>
                                             </div>
                                             <div class="mini_cart_table">
@@ -264,10 +264,10 @@
 
                                             <div class="mini_cart_footer">
                                                 <div class="cart_button">
-                                                    <a href="cart.html">View cart</a>
+                                                    <a  href="<?= BASE_URL?>cart">View cart</a>
                                                 </div>
                                                 <div class="cart_button">
-                                                    <a href="checkout.html">Checkout</a>
+                                                    <a  href="<?= BASE_URL?>checkout">Checkout</a>
                                                 </div>
 
                                             </div>
@@ -290,31 +290,31 @@
                             <div class="main_menu menu_position">
                                 <nav>
                                     <ul>
-                                        <li><a href="index.php?page=home">home</a></li>
-                                        <li><a href="index.php?page=product-details">Product</a></li>
+                                        <li><a  href="<?= BASE_URL?>home">home</a></li>
+                                        <li><a  href="<?= BASE_URL?>product-details">Product</a></li>
 
-                                        <li><a class="active" href="#">pages <i class="fa fa-angle-down"></i></a>
+                                        <li><a class="active"  href="<?= BASE_URL?>#">pages <i class="fa fa-angle-down"></i></a>
                                             <ul class="sub_menu pages">
-                                                <li><a href="index.php?page=">About Us</a></li>
-                                                <li><a href="index.php?page=">contact</a></li>
-                                                <li><a href="index.php?page=">privacy policy</a></li>
-                                                <li><a href="index.php?page=">Frequently Questions</a></li>
-                                                <li><a href="index.php?page=">login</a></li>
-                                                <li><a href="index.php?page=">register</a></li>
-                                                <li><a href="index.php?page=">Forget Password</a></li>
-                                                <li><a href="index.php?page=404">Error 404</a></li>
-                                                <li><a href="index.php?page=">cart</a></li>
-                                                <li><a href="index.php?page=">tracking</a></li>
-                                                <li><a href="index.php?page=">checkout</a></li>
+                                                <li><a  href="<?= BASE_URL?>about">About Us</a></li>
+                                                <li><a  href="<?= BASE_URL?>contact">contact</a></li>
+                                                <li><a  href="<?= BASE_URL?>privacy-policy">privacy policy</a></li>
+                                                <li><a  href="<?= BASE_URL?>faq">Frequently Questions</a></li>
+                                                <li><a  href="<?= BASE_URL?>login">login</a></li>
+                                                <li><a  href="<?= BASE_URL?>register">register</a></li>
+                                                <li><a  href="<?= BASE_URL?>forget-password">Forget Password</a></li>
+                                                <li><a  href="<?= BASE_URL?>404">Error 404</a></li>
+                                                <li><a  href="<?= BASE_URL?>cart">cart</a></li>
+                                                <li><a  href="<?= BASE_URL?>tracking">tracking</a></li>
+                                                <li><a  href="<?= BASE_URL?>checkout">checkout</a></li>
                                             </ul>
                                         </li>
-                                        <!-- <li><a href="index.php?page=blog">blog<i class="fa fa-angle-down"></i></a>
+                                        <!-- <li><a  href="<?= BASE_URL?>blog">blog<i class="fa fa-angle-down"></i></a>
                                             <ul class="sub_menu pages">
-                                                <li><a href="index.php?page=blog">blog</a></li>
-                                                <li><a href="index.php?page=blog-details">blog details</a></li>
+                                                <li><a  href="<?= BASE_URL?>blog">blog</a></li>
+                                                <li><a  href="<?= BASE_URL?>blog-details">blog details</a></li>
                                             </ul>
                                         </li> -->
-                                        <li><a href="index.php?page="> Contact Us</a></li>
+                                        <li><a  href="<?= BASE_URL?>contact"> Contact Us</a></li>
                                     </ul>
                                 </nav>
                             </div>

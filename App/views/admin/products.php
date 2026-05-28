@@ -37,22 +37,37 @@
                             </thead>
                             <tbody>
                                 <?php
-                                use App\Classes\Models\Product;
 
-                                // var_dump(class_exists(\App\Classes\Models\Product::class));
+                                use App\Models\ProductRepository;
+
+                                // var_dump(class_exists(\App\Models\ProductRepository::class));
                                 // die;
-                                $products = (new Product)->getAll() ?>
+                                $products = (new ProductRepository)->getAll() ?>
                                 <?php foreach ($products as $product): ?>
+                                    <?php  ?>
                                     <tr>
-                                        <td><?= $product['id'] ?></td>
-                                        <td><?= $product['name'] ?></td>
-                                        <td><?= $product['description'] ?></td>
-                                        <td><?= $product['price'] ?></td>
-                                        <td><?= $product['stock'] ?></td>
-                                        <td><?= $product['image_url'] ?></td>
-                                        <td><?= $product['price'] * $product['discount'] ?></td>
-                                        <td><?= $product['created_at'] ?></td>
-                                        <td> Delete </td>
+                                        <td><?= $product->getId() ?></td>
+                                        <td><?= $product->getName() ?></td>
+                                        <td><?= $product->getDescription() ?></td>
+                                        <td><?= $product->getPrice() ?></td>
+                                        <td><?= $product->getStock() ?></td>
+                                        <td><?= $product->getImage() ?></td>
+                                        <td><?= $product->priceAfterDiscount() ?></td>
+                                        <td><?= (new ProductRepository())->getCreationTime($product->getId())['created_at'] ?></td>
+                                        <td>
+                                            <form method="POST" action="<?= BASE_URL ?>product/edit/<?= $product->getId() ?>">
+                                                <input type="hidden" name="id" value="<?= $product->getId() ?>">
+                                                <button type="submit" name="edit" class="btn btn-primary btn-sm">
+                                                    edit
+                                                </button>
+                                            </form>
+                                            <form method="POST" action="<?= BASE_URL ?>product/delete/<?= $product->getId() ?>">
+                                                <input type="hidden" name="id" value="<?= $product->getId() ?>">
+                                                <button type="submit" name="delete" class="btn btn-danger btn-sm">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
