@@ -2,6 +2,7 @@
 
 namespace App\Core;
 
+use App\Core\Session\Session;
 use App\Models\Cart;
 
 abstract class Controller
@@ -39,12 +40,12 @@ abstract class Controller
     public  function loadCart()
     {
 
-        if (getSession('user')) {
+        if (Session::getSession('user')) {
 
 
-            if (!getSession('cart_item') && empty(getSession('cart_item'))) {
+            if (!Session::getSession('cart_item') && empty(Session::getSession('cart_item'))) {
                 $cart = new Cart();
-                $this->cart_items = $cart->getCarts(getSession('user')['id'])?? [];
+                $this->cart_items = $cart->getCarts(Session::getSession('user')['id'])?? [];
                 $cartData = [];
 
                 if ($this->cart_items) {

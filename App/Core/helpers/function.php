@@ -1,5 +1,6 @@
 <?php
 
+use App\Core\Session\Session;
 
 function showMessage(string $field = "")
 {
@@ -27,7 +28,7 @@ function getRole()
 
 function getUser()
 {
-    return getSession("user") ?? null;
+    return Session::getSession("user") ?? null;
 }
 
 function isAdmin()
