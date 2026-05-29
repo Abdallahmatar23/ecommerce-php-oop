@@ -38,11 +38,12 @@
                             <tbody>
                                 <?php
 
-                                use App\Models\ProductRepository;
+                                // use App\Models\ProductRepository;
 
                                 // var_dump(class_exists(\App\Models\ProductRepository::class));
+                                // var_dump($products);
                                 // die;
-                                $products = (new ProductRepository)->getAll() ?>
+                                // $products = (new ProductRepository)->getAll() ?>
                                 <?php foreach ($products as $product): ?>
                                     <?php  ?>
                                     <tr>
@@ -53,7 +54,8 @@
                                         <td><?= $product->getStock() ?></td>
                                         <td><?= $product->getImage() ?></td>
                                         <td><?= $product->priceAfterDiscount() ?></td>
-                                        <td><?= (new ProductRepository())->getCreationTime($product->getId())['created_at'] ?></td>
+                                        <td><?= $product->getCreatedAt() ?></td>
+                                        <!-- <td><? //= (new ProductRepository())->getCreationTime($product->getId())['created_at'] ?></td> -->
                                         <td>
                                             <form method="POST" action="<?= BASE_URL ?>product/edit/<?= $product->getId() ?>">
                                                 <input type="hidden" name="id" value="<?= $product->getId() ?>">

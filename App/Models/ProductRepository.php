@@ -32,7 +32,7 @@ class ProductRepository extends Model
         $rows = $this->fetchAll($sql, $params);
         $products = [];
         foreach ($rows as $row) {
-            $products[] = new Product($row['id'], $row['image_url'], $row['name'], $row['description'], $row['price'], $row['stock'], $row['discount']);
+            $products[] = new Product($row['id'], $row['image_url'], $row['name'], $row['description'], $row['price'], $row['stock'], $row['discount'],$row['created_at']);
         }
         return $products;
         // $stmt = $this->db->query($sql,$params);
@@ -43,7 +43,26 @@ class ProductRepository extends Model
     {
         $sql = 'SELECT * FROM products WHERE id = ?';
         $params = [$id];
-        return $this->fetch($sql, $params);
+        $row = $this->fetch($sql, $params);
+
+        if (!$row) return null;
+
+        return new Product(
+            $row['id'],
+            $row['image_url'],
+            $row['name'],
+            $row['description'],
+            $row['price'],
+            $row['stock'],
+            $row['discount'],
+            $row['created_at']
+        );
+    }
+    public function getObjectById(int $id)
+    {
+        $sql = 'SELECT * FROM products WHERE id = ?';
+        $params = [$id];
+        return $this->fetchObject($sql, Product::class, $params);
     }
     public function getCreationTime(int $id)
     {

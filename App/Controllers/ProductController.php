@@ -21,13 +21,17 @@ class ProductController extends Controller
     public function index()
     {
         $products = $this->repo->getAll();
+        // $created_at = $this->repo->getCreationTime();
         $this->view("admin/products", ['products' => $products]);
         // include '../../views/products.php';
     }
     public function details(int $id)
     {
         // $id = $_POST['id'];
+        // $product = $this->repo->getObjectById($id);
         $product = $this->repo->getById($id);
+        // var_dump($product);
+        // die;
         $this->view("store/product-details", ['product' => $product]);
         // include '../../views/products.php';
     }
@@ -36,6 +40,7 @@ class ProductController extends Controller
         $this->view("admin/add-product");
         // include '../../views/products/create_product.php';
     }
+
     public function edit(int $id)
     {
         // $id = $_POST['id'];

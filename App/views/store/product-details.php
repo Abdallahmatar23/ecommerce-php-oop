@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Product;
+// use App\Models\Product;
 // var_dump($product);
 // die();
 // $id = $_GET['id'];
@@ -55,7 +55,7 @@ use App\Models\Product;
                 <div class="product_d_right">
                     <form action="#">
 
-                        <h1><?= $product['name'] ?></h1>
+                        <h1><?= $product->getName() ?></h1>
                         <div class=" product_ratting">
                             <ul>
                                 <li><a href="#"><i class="fa fa-star"></i></a></li>
@@ -68,13 +68,13 @@ use App\Models\Product;
 
                         </div>
                         <div class="price_box">
-                            <span class="current_price">$<?= $product['price'] * $product['discount'] ?></span>
-                            <span class="old_price">$ <?= $product['price'] ?></span>
+                            <span class="current_price">$<?= $product->priceAfterDiscount() ?></span>
+                            <span class="old_price">$ <?= $product->getPrice() ?></span>
 
                         </div>
                         <div class="product_desc">
                             <ul>
-                                <?php if ($product['stock'] > 0): ?>
+                                <?php if ($product->getStock() > 0): ?>
                                     <li>In Stock</li>
                                     <li>Free delivery available*</li>
                                     <li>Sale 30% Off Use Code : 'Drophut'</li>
@@ -82,7 +82,7 @@ use App\Models\Product;
                                     <li>Out of Stock</li>
                                 <?php endif; ?>
                             </ul>
-                            <p><?= $product['description'] ?> </p>
+                            <p><?= $product->getDescription() ?> </p>
                         </div>
                         <div class="product_timing">
                             <div data-countdown="2023/12/15"></div>
@@ -97,7 +97,7 @@ use App\Models\Product;
                                 <li class="color4"><a href="#"></a></li>
                             </ul>
                         </div>
-                        <h4>Only <?= $product['stock'] ?> left in stock</h4>
+                        <h4>Only <?= $product->getStock() ?> left in stock</h4>
                         <div class="product_variant quantity">
                             <label>quantity</label>
                             <input min="1" max="100" value="1" type="number">
