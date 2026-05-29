@@ -28,9 +28,7 @@ class AuthController
 
         Session::set("data", [
             "name" => $this->name,
-            "email" => $this->email,
-            "password" => $this->password,
-            "conpassword" => $this->conpassword
+            "email" => $this->email
         ]);
     }
 
@@ -66,7 +64,7 @@ class AuthController
             Session::set(
                 "action",
                 [
-                    "message" => " User registed successfully",
+                    "message" => "User registered successfully.",
                     "type" => "success"
                 ]
             );
@@ -79,7 +77,7 @@ class AuthController
             Session::set(
                 "action",
                 [
-                    "message" => "invalid register",
+                    "message" => "Registration failed.",
                     "type" => "error"
                 ]
             );
@@ -89,8 +87,99 @@ class AuthController
 
     }
 
+    public function login()
+    {
+        Session::set("data", [
+            "email" => $this->email
+        ]);
+        
+        $users = (new User())->getAll();
+        
+
+        foreach ($users as $user) {
+
+            if (
+                $user["email"] === $this->email &&
+                password_verify($this->password, $user["password"])
+            ) {
+
+                Session::set(
+                    "user",
+                    [
+                        "role" => $user["role"],
+                        "id" => $user["id"]
+                    ]
+                );
+
+                Session::set(
+                    "action",
+                    [
+                        "message" => "Login successful.",
+                        "type" => "success"
+                    ]
+                );
+                if (isset($_POST["remember"])) {
+                    setcookie(
+                        "user_id",
+                        $user["id"],
+                        time() + (60 * 60 * 24 * 30),
+                        "/"
+                    );
+                    setcookie(
+                        "user_role",
+                        $user["role"],
+                        time() + (60 * 60 * 24 * 30),
+                        "/"
+                    );
+                }
+                if ($user["role"] === "user") {
+                    header("location:index.php?page=home");
+                } else {
+                    header("location:index.php?page=dashboard");
+                }
+
+                exit;
+            }
+        }
+
+        Session::set(
+            "action",
+            [
+                "message" => "The email or password is incorrect.",
+                "type" => "error"
+            ]
+        );
+
+        header("location:index.php?page=login");
+        exit;
+    }
+
+    public function logout()
+    {
+        setcookie(
+            "user_id",
+            "",
+            time() - 1,
+            "/"
+        );
+        Session::removeall();
+        header("location:index.php?page=home");
+        exit;
+    }
+
 }
+
+
 if ($_GET["page"] == "registercontroll") {
     (new AuthController())->register();
 }
+if ($_GET["page"] == "logincontroll") {
+    (new AuthController())->login();
+}
+if ($_GET["page"] == "logoutcontroll") {
+    (new AuthController())->logout();
+}
+header("location:index.php?page=home");
+exit;
+
 

@@ -2,8 +2,7 @@
 ob_start();
 require_once 'vendor\autoload.php';
 require_once 'Config\db.php';
-// var_dump(class_exists(\App\Classes\Models\Product::class));
-// die;
+
 
 use App\Classes\Models\Product\Product;
 use App\Classes\Models\Auth\Auth;
@@ -13,9 +12,22 @@ use App\Classes\Core\Session;
 if ($action = Session::flash("action")) {
     Session::get_message($action);
 }
+if (
+    !Session::check("user") &&
+    isset($_COOKIE["user_id"]) &&
+    isset($_COOKIE["user_role"])
+) {
 
+    Session::set(
+        "user",
+        [
+            "id" => $_COOKIE["user_id"],
+            "role" => $_COOKIE["user_role"]
+        ]
+    );
+}
 
-$page = $_GET['page'] ?? 'register';
+$page = $_GET['page'] ?? 'home';
 
 $route = match ($page) {
     'home' => './App/views/store/home.php',
@@ -26,20 +38,21 @@ $route = match ($page) {
     'product-details' => './App/views/store/product-details.php',
     'login' => './App/views/auth/login.php',
     'register' => './App/views/auth/register.php',
-    'registercontroll' => './App/classes/controllers/AuthController.php',
+    'contact' => './App/views/store/contact.php',
+    'logincontroll', 'registercontroll', 'logoutcontroll' => './App/classes/controllers/AuthController.php',
     '404' => './App/views/store/404.php'
 };
 
 
 
 $adminPages = ['dashboard', 'products', 'add-product', 'update-product'];
-$storePages = ['home', 'product-details','register','registercontroll',"login"];
+$storePages = ['home', 'product-details', 'register', 'registercontroll', "login", "logincontroll", "logoutcontroll","contact"];
 
 if (in_array($page, $adminPages)) {
-    // require 'App/views/layout/admin/sidebar.php';
-    // require 'App/views/layout/admin/nav.php';
+    require 'App/views/layout/admin/sidebar.php';
+    require 'App/views/layout/admin/nav.php';
     require $route;
-    // require 'App/views/layout/admin/footer.php';
+    require 'App/views/layout/admin/footer.php';
 }
 if (in_array($page, $storePages)) {
     require 'App/views/layout/store/header.php';

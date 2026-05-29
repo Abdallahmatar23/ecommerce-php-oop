@@ -131,7 +131,7 @@
                                     <a href="#">pages </a>
                                     <ul class="sub-menu">
                                         <li><a href="about.html">About Us</a></li>
-                                        <li><a href="contact.html">contact</a></li>
+                                        <li><a href="index.php?page=contact">contact</a></li>
                                         <li><a href="privacy-policy.html">privacy policy</a></li>
                                         <li><a href="faq.html">Frequently Questions</a></li>
                                         <li><a href="login.html">login</a></li>
@@ -154,7 +154,7 @@
                                     <a href="login.html">my account</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="contact.html"> Contact Us</a>
+                                    <a href="index.php?page=contact"> Contact Us</a>
                                 </li>
                             </ul>
                         </div>
@@ -296,11 +296,11 @@
                                         <li><a class="active" href="#">pages <i class="fa fa-angle-down"></i></a>
                                             <ul class="sub_menu pages">
                                                 <li><a href="index.php?page=">About Us</a></li>
-                                                <li><a href="index.php?page=">contact</a></li>
+                                                <li><a href="index.php?page=contact">contact</a></li>
                                                 <li><a href="index.php?page=">privacy policy</a></li>
                                                 <li><a href="index.php?page=">Frequently Questions</a></li>
-                                                <li><a href="index.php?page=">login</a></li>
-                                                <li><a href="index.php?page=">register</a></li>
+                                                <li><a href="index.php?page=login">login</a></li>
+                                                <li><a href="index.php?page=register">register</a></li>
                                                 <li><a href="index.php?page=">Forget Password</a></li>
                                                 <li><a href="index.php?page=404">Error 404</a></li>
                                                 <li><a href="index.php?page=">cart</a></li>

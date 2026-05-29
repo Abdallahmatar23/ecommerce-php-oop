@@ -49,13 +49,11 @@ $dataUser = Session::get("data");
                                     <div class="single-acc-field">
                                         <label for="password">Password</label>
                                         <input type="text" id="password" name="password" 
-                                        value="<?= $dataUser["password"] ?? "" ?>"
                                             placeholder=" At least 8 Charecter">
                                     </div>
                                     <div class="single-acc-field">
                                         <label for="password">Confirm Password</label>
                                         <input type="text" id="password" name="conpassword" 
-                                        value="<?= $dataUser["conpassword"] ?? "" ?>"
                                             placeholder=" Enter Password agin">
                                     </div>
                                     <div class="single-acc-field boxes">

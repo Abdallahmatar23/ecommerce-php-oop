@@ -9,12 +9,12 @@ use App\Classes\Core\Database;
 
 class User
 {
-    private int $id;
-    private string $name;
-    private string $email;
-    private float $role;
-    private string $craete_at;
-    private int $update_at;
+    // private int $id;
+    // private string $name;
+    // private string $email;
+    // private float $role;
+    // private string $craete_at;
+    // private int $update_at;
 
     private Database $db;
 

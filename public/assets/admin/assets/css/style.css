@@ -1231,3 +1231,77 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
+
+.error-message,
+.success-message,
+.warning-message {
+  position: fixed;
+  top: 20px;
+  right: 50%;
+  transform: translateX(50%);
+  min-width: 300px;
+  max-width: 90%;
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  opacity: 0;
+  animation: notify 4.5s ease-in-out forwards;
+
+  /* منع الرسالة من تعطيل أي لينكات أو أزرار تحتها */
+  pointer-events: none;
+}
+
+.error-message {
+  background: linear-gradient(135deg, #ff2d2d, #c92a2a);
+  color: #fff;
+}
+
+.success-message {
+  background: linear-gradient(135deg, #fdd835, #f57c17);
+  color: #333;
+  /* نص داكن */
+}
+
+
+
+/* لو فيه زر إغلاق داخل الرسالة */
+.flash-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: inherit;
+  cursor: pointer;
+  pointer-events: auto;
+  /* يسمح بالنقر فقط على الزر */
+}
+
+/* ===== Animation ===== */
+@keyframes notify {
+  0% {
+    opacity: 0;
+    transform: translate(50%, -30px) scale(.95);
+  }
+
+  10% {
+    opacity: 1;
+    transform: translate(50%, 0) scale(1);
+  }
+
+  85% {
+    opacity: 1;
+    transform: translate(50%, 0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(50%, -30px) scale(.95);
+  }
+}
