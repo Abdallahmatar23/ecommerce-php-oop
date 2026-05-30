@@ -1,0 +1,77 @@
+
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="<?= BASE_URL ?>home">home</a></li>
+                        <li>Register</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+
+<section class="account">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="account-contents"
+                    style="background: url('public/assets/store/assets/img/about/about1.jpg'); background-size: cover;">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class="account-thumb">
+                                <h2>Register now</h2>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis consectetur similique
+                                    deleniti pariatur enim cumque eum</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class="account-content">
+                                <?= showMessage() ?>
+                               
+                                <form action="<?= BASE_URL ?>auth/register" method="POST">
+                                    <div class="single-acc-field">
+                                        <label for="name">Name</label>
+                                        <input type="text" id="name" name="name" value="<?= $dataUser["name"] ?? "" ?>"
+                                            placeholder="Enter Your Name">
+                                            <?= showErrorField("name") ?>
+                                    </div>
+                                    <div class="single-acc-field">
+                                        <label for="email">Email</label>
+                                        <input type="text" id="email" name="email"
+                                            value="<?=$dataUser["email"] ?? ""?>" placeholder="Enter your Email">
+                                       <?= showErrorField("email") ?>
+                                        </div>
+                                    <div class="single-acc-field">
+                                        <label for="password">Password</label>
+                                        <input type="text" id="password" name="password" 
+                                            placeholder=" At least 8 Charecter">
+                                               <?= showErrorField("pass") ?>
+                                            </div>
+                                            <div class="single-acc-field">
+                                        <label for="password">Confirm Password</label>
+                                        <input type="text" id="password" name="confirm_password" 
+                                        placeholder=" Enter Password agin">
+                                    </div>
+                                    <?= showErrorField("password_confirm") ?>
+                                    <div class="single-acc-field boxes">
+                                        <input type="checkbox" id="checkbox">
+                                        <label for="checkbox">I'm not a robot</label>
+                                    </div>
+                                    <div class="single-acc-field">
+                                        <button type="submit">Register now</button>
+                                    </div>
+                                    <a href="<?= BASE_URL ?>auth/login">Already account? Login</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

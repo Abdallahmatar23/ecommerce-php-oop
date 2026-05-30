@@ -6,7 +6,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="widgets_container contact_us">
                         <div class="footer_logo">
-                            <a  href="<?= BASE_URL?>#"><img src="assets/store/assets/img/logo/logo.png" alt=""></a>
+                            <a  href="<?= BASE_URL?>#"><img src="<?= BASE_URL ?>assets/store/assets/img/logo/logo.png" alt=""></a>
                         </div>
                         <div class="footer_contact">
                             <p>John draw real poor on call my from. May she mrs furnished discourse extremely. Ask doubt noisy shade guest Lose away off why half led have near bed. At engage simple father of period others except</p>
@@ -98,10 +98,10 @@
 
 
 <!-- Plugins JS -->
-<script src="assets/store/assets/js/plugins.js"></script>
+<script src="<?= BASE_URL ?>assets/store/assets/js/plugins.js"></script>
 
 <!-- Main JS -->
-<script src="assets/store/assets/js/main.js"></script>
+<script src="<?= BASE_URL ?>assets/store/assets/js/main.js"></script>
 
 
 

@@ -33,11 +33,3 @@ class Model
     return $this->query($sql, $params)->fetch((PDO::FETCH_ASSOC));
   }
 }
-    
-    // public   function getProducts()
-    // {
-    //     $sql = "SELECT * FROM products";
-    //     $$res = $this->db->query($sql);
-    //     $Products = $res->fetchAll(PDO::FETCH_ASSOC);
-    //     return  $Products;
-    // }

@@ -5,8 +5,12 @@ namespace App\Controllers;
 // use App\Database;
 
 use App\Core\Controller;
+use App\Core\Session\Session;
+use App\Models\Cart;
+use App\Models\CartItem;
 use App\Models\Product;
 use App\Models\ProductRepository;
+use App\Repositories\CartItemRepository;
 
 class ProductController extends Controller
 {
@@ -24,12 +28,24 @@ class ProductController extends Controller
         $this->view("admin/products", ['products' => $products]);
         // include '../../views/products.php';
     }
-    public function details(int $id)
+    public function details(int $product_id)
     {
-        // $id = $_POST['id'];
-        $product = $this->repo->getById($id);
-        $this->view("store/product-details", ['product' => $product]);
-        // include '../../views/products.php';
+        if (Session::check("user")) {
+            $cartItem = (new CartItemRepository())->getCartItem(Session::get('user')['id'], $product_id);
+
+            if ($cartItem) {
+                $product =  $cartItem->getProduct();
+                $qty =  $cartItem->getQty();
+            } else {
+                $product =  (new ProductRepository)->getById($product_id);
+                $qty = 0;
+            }
+        } else {
+            $product =  (new ProductRepository)->getById($product_id);
+            $qty = 0;
+        }
+
+        $this->view("store/product-details", ['product' => $product, 'qty' => $qty]);
     }
     public function create()
     {
@@ -112,7 +128,7 @@ class ProductController extends Controller
         $stock = $data['stock'];
         if (!empty($_FILES['image']['name'])) {
             $image = $this->uploadImage($_FILES['image']);
-        }else{
+        } else {
             $image = $data['oldImage'];
         }
         $discount = $data['discount'];

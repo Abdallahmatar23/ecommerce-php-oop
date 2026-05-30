@@ -1,17 +1,40 @@
 <?php
 
-require_once __dir__.'/../vendor/autoload.php';
-require_once __dir__.'/../Config/appSetting.php';
-require_once __dir__.'/../Config/db.php';
-require_once CORE.'/helpers/function.php';
-require_once CORE.'/Session/session.php';
 
+require_once __dir__ . '/../vendor/autoload.php';
+require_once __dir__ . '/../Config/appSetting.php';
+require_once __dir__ . '/../Config/db.php';
+require_once CORE . '/helpers/function.php';
+
+use App\Core\Session\Session;
 use App\Core\App;
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+// var_dump(Session::get("user"));
+// var_dump($_COOKIE["user_role"]);
+// die;
+if ($action = Session::flash("action")) {
+    Session::get_message($action);
+}
+if (
+    !Session::check("user") &&
+    isset($_COOKIE["user_id"]) &&
+    isset($_COOKIE["user_role"])
+) {
+
+    Session::set(
+        "user",
+        [
+            "id" => $_COOKIE["user_id"],
+            "role" => $_COOKIE["user_role"]
+        ]
+    );
+}
 new App();
 
 
 
-// echo "Ss";
 
 
 

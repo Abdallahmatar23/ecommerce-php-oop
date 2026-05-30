@@ -2,33 +2,36 @@
 
 use App\Core\Session\Session;
 
-function showMessage(string $field = "")
+function showErrorField(string $field = "")
 {
-    if (isset($_SESSION['errors'][$field])) {
-        foreach ($_SESSION['errors'][$field] as $error) {
-            echo "<div class='alert alert-danger m-2 '> {$error} </div>";
+    if (isset($_SESSION['errors'])) {
+        foreach ($_SESSION['errors'] as $key => $error) {
+            if ($key == $field) {
+
+                echo "<div class='alert alert-danger m-2 '> {$error} </div>";
+                unset($_SESSION['errors'][$key]);
+            }
         }
-        unset($_SESSION['errors'][$field]);
-    } elseif (isset($_SESSION['error'])) {
-        $msg = $_SESSION['error'];
-        echo "<div class='alert alert-danger m-2 '> {$msg} </div>";
-        unset($_SESSION['error']);
-    } elseif (isset($_SESSION['success'])) {
+    }
+}
+
+function showMessage()
+{
+    if (isset($_SESSION['success'])) {
         $msg = $_SESSION['success'];
         echo "<div class='alert alert-success m-2 '> {$msg}</div>";
 
         unset($_SESSION['success']);
+    } elseif (isset($_SESSION['error'])) {
+        $msg = $_SESSION['error'];
+        echo "<div class='alert alert-danger m-2 '> {$msg}</div>";
+
+        unset($_SESSION['error']);
     }
 }
-
 function getRole()
 {
-    return getUser()['role'] ?? null;
-}
-
-function getUser()
-{
-    return Session::getSession("user") ?? null;
+    return Session::get("user")['role'] ?? null;
 }
 
 function isAdmin()

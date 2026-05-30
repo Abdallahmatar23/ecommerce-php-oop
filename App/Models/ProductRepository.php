@@ -39,11 +39,15 @@ class ProductRepository extends Model
         // return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
     public function getById(int $id)
     {
         $sql = 'SELECT * FROM products WHERE id = ?';
         $params = [$id];
-        return $this->fetch($sql, $params);
+        $product = $this->fetch($sql, $params);
+        if ($product) {
+            return new Product($product['id'], $product['image_url'], $product['name'], $product['description'], $product['price'], $product['stock'], $product['discount']);
+        }
     }
     public function getCreationTime(int $id)
     {

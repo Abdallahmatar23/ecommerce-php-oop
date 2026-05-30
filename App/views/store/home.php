@@ -1,10 +1,3 @@
-<?php
-// echo '<pre>';
-// var_dump($products);
-// echo '</pre>';
-// die;
-?>
-
 
 <!--slider area start-->
 <section class="slider_section d-flex align-items-center" data-bgimg="assets/store/assets/img/slider/slider3.jpg">
@@ -85,7 +78,7 @@
             <?php foreach ($products as $product): ?>
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                     <div class="single-tranding mb-30">
-                        <a href="index.php?page=product-details&id=<?= $product->getId() ?>">
+                        <a href="<?= BASE_URL ?>product/details/<?= $product->getId() ?>">
                             <div class="tranding-pro-img">
                                 <img src="<?= $product->getImage()?>" alt="">
                             </div>
