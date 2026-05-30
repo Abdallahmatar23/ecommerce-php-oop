@@ -1,13 +1,6 @@
-<?php
-
-use App\Classes\Models\Product;
-
-$products = (new Product)->getAll();
-?>
-
 
 <!--slider area start-->
-<section class="slider_section d-flex align-items-center" data-bgimg="public/assets/store/assets/img/slider/slider3.jpg">
+<section class="slider_section d-flex align-items-center" data-bgimg="assets/store/assets/img/slider/slider3.jpg">
     <div class="slider_area owl-carousel">
         <div class="single_slider d-flex align-items-center">
             <div class="container">
@@ -22,7 +15,7 @@ $products = (new Product)->getAll();
                     </div>
                     <div class="col-xl-6 col-md-6">
                         <div class="slider_content">
-                            <img src="public/assets/store/assets/img/product/1.png" alt="">
+                            <img src="assets/store/assets/img/product/1.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -42,7 +35,7 @@ $products = (new Product)->getAll();
                     </div>
                     <div class="col-xl-6 col-md-6">
                         <div class="slider_content">
-                            <img src="public/assets/store/assets/img/product/2.png" alt="">
+                            <img src="assets/store/assets/img/product/2.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -61,7 +54,7 @@ $products = (new Product)->getAll();
                     </div>
                     <div class="col-xl-6 col-md-6">
                         <div class="slider_content">
-                            <img src="public/assets/store/assets/img/product/3.png" alt="">
+                            <img src="assets/store/assets/img/product/3.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -85,21 +78,21 @@ $products = (new Product)->getAll();
             <?php foreach ($products as $product): ?>
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                     <div class="single-tranding mb-30">
-                        <a href="index.php?page=product-details&id=<?= $product['id'] ?>">
+                        <a href="<?= BASE_URL ?>product/details/<?= $product->getId() ?>">
                             <div class="tranding-pro-img">
-                                <img src="<?= $product['image_url'] ?>" alt="">
+                                <img src="<?= $product->getImage()?>" alt="">
                             </div>
                             <div class="tranding-pro-title">
-                                <h3><?= $product['name'] ?></h3>
-                                <h4><?= $product['description'] ?></h4>
+                                <h3><?= $product->getName() ?></h3>
+                                <h4><?= $product->getDescription() ?></h4>
                             </div>
                             <div class="tranding-pro-price">
                                 <div class="price_box">
                                     <span class="current_price">
-                                        $<?= $product['price'] * $product['discount'] ?>
+                                        $<?= $product->priceAfterDiscount() ?>
                                     </span>
                                     <span class="old_price">
-                                        $<?= $product['price'] ?>
+                                        $<?= $product->getPrice() ?>
                                     </span>
                                 </div>
                             </div>
@@ -123,27 +116,27 @@ $products = (new Product)->getAll();
         <div class="row justify-content-center">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                 <div class="single-features">
-                    <img src="public/assets/store/assets/img/icon/1.png" alt="">
+                    <img src="assets/store/assets/img/icon/1.png" alt="">
                     <h3>Impressive Distance</h3>
                     <p>consectetur adipisicing elit. Ut praesentium earum, blanditiis, voluptatem repellendus rerum voluptatibus dignissimos</p>
                 </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                 <div class="single-features">
-                    <img src="public/assets/store/assets/img/icon/2.png" alt="">
+                    <img src="assets/store/assets/img/icon/2.png" alt="">
                     <h3>100% self safe</h3>
                     <p>consectetur adipisicing elit. Ut praesentium earum, blanditiis, voluptatem repellendus rerum voluptatibus dignissimos</p>
                 </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                 <div class="single-features">
-                    <img src="public/assets/store/assets/img/icon/3.png" alt="">
+                    <img src="assets/store/assets/img/icon/3.png" alt="">
                     <h3>Awesome Support</h3>
                     <p>consectetur adipisicing elit. Ut praesentium earum, blanditiis, voluptatem repellendus rerum voluptatibus dignissimos</p>
                 </div>
             </div>
             <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
-                <a href="#"><img src="public/assets/store/assets/img/product/2.png" alt=""></a>
+                <a href="#"><img src="assets/store/assets/img/product/2.png" alt=""></a>
             </div>
         </div>
     </div>
@@ -155,7 +148,7 @@ $products = (new Product)->getAll();
         <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 order-lg-1 order-md-1 order-sm-1">
                 <div class="pro-details-feature">
-                    <img src="public/assets/store/assets/img/product/1.png" alt="">
+                    <img src="assets/store/assets/img/product/1.png" alt="">
                 </div>
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 order-lg-2 order-md-2 order-sm-2">
@@ -190,7 +183,7 @@ $products = (new Product)->getAll();
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 order-lg-4 order-md-3 order-sm-3 order-3">
                 <div class="pro-details-feature">
-                    <img src="public/assets/store/assets/img/product/1.png" alt="">
+                    <img src="assets/store/assets/img/product/1.png" alt="">
                 </div>
             </div>
         </div>
@@ -208,24 +201,25 @@ $products = (new Product)->getAll();
             </div>
         </div>
         <div class="row justify-content-center">
+    
             <?php foreach ($products as $product): ?>
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                     <div class="single-tranding mb-30">
-                        <a href="index.php?page=product-details&id=<?= $product['id'] ?>">
+                        <a href="index.php?page=product-details&id=<?= $product->getId() ?>">
                             <div class="tranding-pro-img">
-                                <img src="<?= $product['image_url'] ?>" alt="">
+                                <img src="<?= $product->getImage()?>" alt="">
                             </div>
                             <div class="tranding-pro-title">
-                                <h3><?= $product['name'] ?></h3>
-                                <h4><?= $product['description'] ?></h4>
+                                <h3><?= $product->getName() ?></h3>
+                                <h4><?= $product->getDescription() ?></h4>
                             </div>
                             <div class="tranding-pro-price">
                                 <div class="price_box">
                                     <span class="current_price">
-                                        $<?= $product['price'] * $product['discount'] ?>
+                                        $<?= $product->priceAfterDiscount() ?>
                                     </span>
                                     <span class="old_price">
-                                        $<?= $product['price'] ?>
+                                        $<?= $product->getPrice() ?>
                                     </span>
                                 </div>
                             </div>
@@ -247,7 +241,7 @@ $products = (new Product)->getAll();
                         <article class="single_testimonial">
                             <figure>
                                 <div class="testimonial_thumb">
-                                    <a href="#"><img src="public/assets/store/assets/img/about/team-3.jpg" alt=""></a>
+                                    <a href="#"><img src="assets/store/assets/img/about/team-3.jpg" alt=""></a>
                                 </div>
                                 <figcaption class="testimonial_content">
                                     <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45</p>
@@ -259,7 +253,7 @@ $products = (new Product)->getAll();
                         <article class="single_testimonial">
                             <figure>
                                 <div class="testimonial_thumb">
-                                    <a href="#"><img src="public/assets/store/assets/img/about/team-1.jpg" alt=""></a>
+                                    <a href="#"><img src="assets/store/assets/img/about/team-1.jpg" alt=""></a>
                                 </div>
                                 <figcaption class="testimonial_content">
                                     <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even</p>
@@ -271,7 +265,7 @@ $products = (new Product)->getAll();
                         <article class="single_testimonial">
                             <figure>
                                 <div class="testimonial_thumb">
-                                    <a href="#"><img src="public/assets/store/assets/img/about/team-2.jpg" alt=""></a>
+                                    <a href="#"><img src="assets/store/assets/img/about/team-2.jpg" alt=""></a>
                                 </div>
                                 <figcaption class="testimonial_content">
                                     <p>College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites</p>
@@ -295,7 +289,7 @@ $products = (new Product)->getAll();
             <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                 <div class="single_shipping">
                     <div class="shipping_icone">
-                        <img src="public/assets/store/assets/img/about/shipping1.png" alt="">
+                        <img src="assets/store/assets/img/about/shipping1.png" alt="">
                     </div>
                     <div class="shipping_content">
                         <h2>Free Shipping</h2>
@@ -306,7 +300,7 @@ $products = (new Product)->getAll();
             <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                 <div class="single_shipping">
                     <div class="shipping_icone">
-                        <img src="public/assets/store/assets/img/about/shipping2.png" alt="">
+                        <img src="assets/store/assets/img/about/shipping2.png" alt="">
                     </div>
                     <div class="shipping_content">
                         <h2>Support 24/7</h2>
@@ -317,7 +311,7 @@ $products = (new Product)->getAll();
             <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                 <div class="single_shipping">
                     <div class="shipping_icone">
-                        <img src="public/assets/store/assets/img/about/shipping3.png" alt="">
+                        <img src="assets/store/assets/img/about/shipping3.png" alt="">
                     </div>
                     <div class="shipping_content">
                         <h2>100% Money Back</h2>
@@ -328,7 +322,7 @@ $products = (new Product)->getAll();
             <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                 <div class="single_shipping">
                     <div class="shipping_icone">
-                        <img src="public/assets/store/assets/img/about/shipping4.png" alt="">
+                        <img src="assets/store/assets/img/about/shipping4.png" alt="">
                     </div>
                     <div class="shipping_content">
                         <h2>Payment Secure</h2>

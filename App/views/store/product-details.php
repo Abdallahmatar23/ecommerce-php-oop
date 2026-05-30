@@ -1,12 +1,3 @@
-<?php
-
-use App\Classes\Models\Product;
-
-$id = $_GET['id'];
-$product = (new Product())->getById($id);
-// echo $id;
-// die();
-?>
 
 
 <!--product details start-->
@@ -17,32 +8,32 @@ $product = (new Product())->getById($id);
                 <div class="product-details-tab">
                     <div id="img-1" class="zoomWrapper single-zoom">
                         <a href="#">
-                            <img id="zoom1" src="public/assets/store/assets/img/product/details-1.jpg" data-zoom-image="public/assets/store/assets/img/product/details-1.jpg" alt="big-1">
+                            <img id="zoom1" src="<?= BASE_URL ?>assets/store/assets/img/product/details-1.jpg" data-zoom-image="<?= BASE_URL ?>assets/store/assets/img/product/details-1.jpg" alt="big-1">
                         </a>
                     </div>
                     <div class="single-zoom-thumb">
                         <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
                             <li>
-                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="public/assets/store/assets/img/product/details-2.jpg" data-zoom-image="public/assets/store/assets/img/product/details-2.jpg">
-                                    <img src="public/assets/store/assets/img/product/details-2.jpg" alt="zo-th-1" />
+                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="<?= BASE_URL ?>assets/store/assets/img/product/details-2.jpg" data-zoom-image="<?= BASE_URL ?>assets/store/assets/img/product/details-2.jpg">
+                                    <img src="<?= BASE_URL ?>assets/store/assets/img/product/details-2.jpg" alt="zo-th-1" />
                                 </a>
 
                             </li>
                             <li>
-                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="public/assets/store/assets/img/product/details-3.jpg" data-zoom-image="public/assets/store/assets/img/product/details-3.jpg">
-                                    <img src="public/assets/store/assets/img/product/details-3.jpg" alt="zo-th-1" />
+                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="<?= BASE_URL ?>assets/store/assets/img/product/details-3.jpg" data-zoom-image="<?= BASE_URL ?>assets/store/assets/img/product/details-3.jpg">
+                                    <img src="<?= BASE_URL ?>assets/store/assets/img/product/details-3.jpg" alt="zo-th-1" />
                                 </a>
 
                             </li>
                             <li>
-                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="public/assets/store/assets/img/product/details-4.jpg" data-zoom-image="public/assets/store/assets/img/product/details-4.jpg">
-                                    <img src="public/assets/store/assets/img/product/details-4.jpg" alt="zo-th-1" />
+                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="<?= BASE_URL ?>assets/store/assets/img/product/details-4.jpg" data-zoom-image="<?= BASE_URL ?>assets/store/assets/img/product/details-4.jpg">
+                                    <img src="<?= BASE_URL ?>assets/store/assets/img/product/details-4.jpg" alt="zo-th-1" />
                                 </a>
 
                             </li>
                             <li>
-                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="public/assets/store/assets/img/product/details-1.jpg" data-zoom-image="public/assets/store/assets/img/product/details-1.jpg">
-                                    <img src="public/assets/store/assets/img/product/details-1.jpg" alt="zo-th-1" />
+                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="<?= BASE_URL ?>assets/store/assets/img/product/details-1.jpg" data-zoom-image="<?= BASE_URL ?>assets/store/assets/img/product/details-1.jpg">
+                                    <img src="<?= BASE_URL ?>assets/store/assets/img/product/details-1.jpg" alt="zo-th-1" />
                                 </a>
 
                             </li>
@@ -52,9 +43,9 @@ $product = (new Product())->getById($id);
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="product_d_right">
-                    <form action="#">
+                    <form action="<?= BASE_URL ?>cart/handle/add/<?= $product->getId()?>/1" method="POST">
 
-                        <h1><?= $product['name'] ?></h1>
+                        <h1><?= $product->getName() ?></h1>
                         <div class=" product_ratting">
                             <ul>
                                 <li><a href="#"><i class="fa fa-star"></i></a></li>
@@ -67,13 +58,13 @@ $product = (new Product())->getById($id);
 
                         </div>
                         <div class="price_box">
-                            <span class="current_price">$<?= $product['price'] * $product['discount'] ?></span>
-                            <span class="old_price">$ <?= $product['price'] ?></span>
+                            <span class="current_price">$<?= $product->priceAfterDiscount()?></span>
+                            <span class="old_price">$ <?= $product->getPrice() ?></span>
 
                         </div>
                         <div class="product_desc">
                             <ul>
-                                <?php if ($product['stock'] > 0): ?>
+                                <?php if ($product->getStock() > 0): ?>
                                     <li>In Stock</li>
                                     <li>Free delivery available*</li>
                                     <li>Sale 30% Off Use Code : 'Drophut'</li>
@@ -81,7 +72,7 @@ $product = (new Product())->getById($id);
                                     <li>Out of Stock</li>
                                 <?php endif; ?>
                             </ul>
-                            <p><?= $product['description'] ?> </p>
+                            <p><?= $product->getDescription()?> </p>
                         </div>
                         <div class="product_timing">
                             <div data-countdown="2023/12/15"></div>
@@ -96,11 +87,19 @@ $product = (new Product())->getById($id);
                                 <li class="color4"><a href="#"></a></li>
                             </ul>
                         </div>
-                        <h4>Only <?= $product['stock'] ?> left in stock</h4>
+                        <h4>Only <?= $product->getStock() ?> left in stock</h4>
                         <div class="product_variant quantity">
-                            <label>quantity</label>
-                            <input min="1" max="100" value="1" type="number">
+                             <?php if ($qty >= 1): ?>
+                            <a class=" button p-2 h-auto mx-2" href="<?= BASE_URL ?>cart/handle/change/<?= $product->getId() ?>/-1">-</a>
+                            <label>quantity : </label> <span><?= $qty ?></span>
+                            <a class=" button p-2 h-auto mx-2" href="<?= BASE_URL ?>cart/handle/change/<?= $product->getId() ?>/1">+</a>
+                        <?php else: ?>
+                            <label>quantity : </label><span><?= $qty?></span>
                             <button class="button" type="submit">add to cart</button>
+                        <?php endif; ?>
+                            <!-- <label>quantity</label>
+                            <input min="1" max="100" value="1" type="number">
+                            <button class="button" type="submit">add to cart</button> -->
 
                         </div>
                         <div class=" product_d_action">
@@ -188,7 +187,7 @@ $product = (new Product())->getById($id);
                                 <h2>1 review for Donec eu furniture</h2>
                                 <div class="reviews_comment_box">
                                     <div class="comment_thmb">
-                                        <img src="public/assets/store/assets/img/blog/comment2.jpg" alt="">
+                                        <img src="assets/store/assets/img/blog/comment2.jpg" alt="">
                                     </div>
                                     <div class="comment_text">
                                         <div class="reviews_meta">
