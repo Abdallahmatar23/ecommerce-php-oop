@@ -45,6 +45,9 @@ class PageController extends Controller
     }
     public  function checkout()
     {
+        if (!Session::check("user")) {
+            redirect("login");
+        }
         $user = (new User())->getById(Session::get("user")['id']);
         $this->view("store/checkout", ["user" => $user]);
     }

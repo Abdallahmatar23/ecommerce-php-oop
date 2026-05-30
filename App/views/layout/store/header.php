@@ -53,8 +53,8 @@ use App\Core\Session\Session;
                         <div class="col-lg-6 col-md-6">
                             <div class="top_right text-right">
                                 <ul>
-                                    <li><a href="<?= BASE_URL ?>my-account ">Account</a></li>
-                                    <li><a href="<?= BASE_URL ?>checkout ">Checkout</a></li>
+                                    <li><a href="<?= BASE_URL ?>page/my-account ">Account</a></li>
+                                    <li><a href="<?= BASE_URL ?>page/checkout ">Checkout</a></li>
                                 </ul>
                             </div>
                         </div>
