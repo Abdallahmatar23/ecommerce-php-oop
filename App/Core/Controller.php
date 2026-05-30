@@ -46,9 +46,6 @@ abstract class Controller
 
         if (Session::get('user')) {
 
-
-            // if (!Session::get('cart_item') && empty(Session::get('cart_item'))) {
-            // $cartData = [];
             $cart_items = (new CartItemRepository())->getCartItems(Session::get('user')['id']);
 
             if ($cart_items) {
@@ -59,24 +56,9 @@ abstract class Controller
                     $this->total += $cart_item->getSubTotal();
                 }
                 $this->cart_items = $cart_items;
-                // Session::set('cart_items', $cartData);
-                // Session::set('totalQty', $this->totalQty);
-                // Session::set('total', $this->total);
-                // $this->cart_items = getSession('cart_items');
-                // $this->totalQty = getSession('totalQty');
+             
             }
-        } else {
-            $data = [];
-            foreach (Session::get('cart_items') as $cart_item) {
-                $data[] =CartItem::fromArray($cart_item);
-           
-                
-                }
-                $this->cart_items =$data;
-                $this->totalQty =Session::get("totalQty");
-                $this->total =Session::get("total");
-        }
-        // } else {
-        // }
+        } 
+       
     }
 }

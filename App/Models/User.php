@@ -35,9 +35,9 @@ class User extends Model
         string $password,
         string $role
     ) {
-        $passwordhash = password_hash($password, PASSWORD_DEFAULT);
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $sql = 'INSERT INTO `users` (`name`,`email`,`password`,`role`) VALUES (?,?,?,?)';
-        $params = [$name, $email, $passwordhash, $role];
+        $params = [$name, $email, $passwordHash, $role];
 
         $stmt = $this->query($sql, $params);
 

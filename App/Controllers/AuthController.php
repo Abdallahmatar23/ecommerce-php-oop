@@ -6,7 +6,7 @@ namespace App\Controllers;
 
 use App\Core\Controller;
 use App\Models\User;
-use App\core\Validator;
+use App\Core\Validator;
 use App\Core\Session\Session;
 
 
@@ -49,15 +49,6 @@ class AuthController extends Controller
             Session::set("errors", $validator->getErrors());
             redirect("register");
         }
-        // if ((new Validator)->getErrors() ) {
-        //     Session::set("action", [
-        //         "message" => $error,
-        //         "type" => "error"
-        //     ]);
-        //     header("Location:" . BASE_URL . "register");
-        //     exit;
-        // }
-
         $success = (new User())->add_user($this->name, $this->email, $this->password, "user");
         if ($success) {
             Session::set(
@@ -71,27 +62,12 @@ class AuthController extends Controller
             Session::set("success", "User registered successfully.");
 
 
-            // Session::set(
-            //     "action",
-            //     [
-            //         "message" => "User registered successfully.",
-            //         "type" => "success"
-            //     ]
-            // );
-
             Session::remove("data");
             header("Location:" . BASE_URL . "register");
             exit;
         } else {
             Session::set("error", "User registered successfully.");
 
-            // Session::set(
-            //     "action",
-            //     [
-            //         "message" => "Registration failed.",
-            //         "type" => "error"
-            //     ]
-            // );
             header("Location:" . BASE_URL . "register");
             exit;
         }
@@ -127,13 +103,6 @@ class AuthController extends Controller
                     );
                     Session::set("success", "Login successful.");
 
-                    // Session::set(
-                    //     "action",
-                    //     [
-                    //         "message" => "Login successful.",
-                    //         "type" => "success"
-                    //     ]
-                    // );
                     if (isset($_POST["remember"])) {
                         setcookie(
                             "user_id",
@@ -149,30 +118,17 @@ class AuthController extends Controller
                         );
                     }
                     if ($user["role"] === "user") {
-                      redirect("home");
+                        redirect("home");
                     } else {
                         redirect("admin");
-                        }
-                        
-                        } 
-                        
-                        
-                        }
-                        }
-                        Session::set("error", "The email or password is incorrect.");
-                        redirect("login");
-
-            // Session::set(
-            //     "action",
-            //     [
-            //         "message" => "The email or password is incorrect.",
-            //         "type" => "error"
-            //     ]
-            // );
-
-
+                    }
+                }
+            }
         }
-    
+        Session::set("error", "The email or password is incorrect.");
+        redirect("login");
+    }
+
 
     public function logout()
     {
@@ -190,12 +146,4 @@ class AuthController extends Controller
     }
 }
     
-    // if ($_GET["page"] == "registercontroll") {
-    //     (new AuthController())->register();
-    // }
-    // if ($_GET["page"] == "logincontroll") {
-    //     (new AuthController())->login();
-    // }
-    // if ($_GET["page"] == "logoutcontroll") {
-    //     (new AuthController())->logout();
-    // }
+   

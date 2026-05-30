@@ -19,33 +19,21 @@ class CartService
     {
         $this->cartItemRepository = new CartItemRepository();
         $this->cartRepository = new CartRepository();
-        // if (Session::hasSession(self::SESSION_KEY) && !empty(Session::getSession(self::SESSION_KEY))) {
-        //     $this->items = $this->loadFromSession(Session::getSession(self::SESSION_KEY));
-        // } else {
-        // $this->items = Session::hasSession('user') ? $this->cart->getCarts(Session::getSession('user')['id']) : [];
-
         if (Session::get("user")) {
 
             $this->items =  $this->cartItemRepository->getCartItems(Session::get("user")['id']) ?? [];
         } else {
-            if (Session::check(self::SESSION_KEY)) {
-                $this->items =  Session::get(self::SESSION_KEY);
-            } else {
-                $this->items =  [];
-            }
-            // redirect("login");
+          
+            redirect("login");
         }
-        // getCarts(Session::get('user')['id']) ?? [];
-        // $this->saveToSession();
-        // }
+       
 
     }
 
     public function add(int $product_id, int  $qty)
     {
 
-        // $product = (new ProductRepository())->getById($product_id);
-        // $cart_item = new CartItem($product, $qty);/
+      
 
         if (Session::check('user')) {
             if (!$this->cartRepository->getCartByUser(Session::get('user')['id'])) {
@@ -58,13 +46,7 @@ class CartService
 
                 $this->cartItemRepository->addCartItem($cart_id, $product_id, $qty);
             }
-        } else {
-
-            $product = (new ProductRepository())->getById($product_id);
-            $cart_item = new CartItem($product, $qty);
-            $this->items[] = $cart_item;
-            $this->saveToSession();
-        }
+        } 
     }
 
     public function change(int $product_id, int  $qty)
@@ -85,7 +67,6 @@ class CartService
                 return;
             }
         }
-        // $this->saveToSession();
 
     }
 
@@ -103,40 +84,14 @@ class CartService
                 return;
             }
         }
-        // $this->saveToSession();
     }
     public function clearAll()
     {
         $user = Session::get('user');
         $this->items = [];
-        // deleteSession(self::SESSION_KEY);
         $cart_id = $this->cartRepository->getCartByUser($user['id']);
-
         if ($user) $this->cartItemRepository->deleteCartItems($cart_id);
     }
 
 
-
-    private function loadFromSession(array $data)
-    {
-        $this->items = [];
-        foreach ($data as $itemProduct) {
-            $this->items[] = CartItem::fromArray($itemProduct);
-        }
-        return $this->items;
-    }
-    private function saveToSession()
-    {
-        $data = [];
-        $totalQty = 0;
-        $total = 0;
-        foreach ($this->items as $item) {
-            $data[] = $item->toArray();
-            $total += $item->getSubTotal();
-            $totalQty += $item->getQty();
-        }
-        Session::set(self::SESSION_KEY, $data);
-        Session::set('totalQty', $totalQty);
-        Session::set('total', $total);
-    }
 }

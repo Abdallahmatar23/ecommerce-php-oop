@@ -34,29 +34,5 @@ class CartItem extends Model
     {
         return $this->product->getPrice() * $this->qty;
     }
-
-    public  function toArray()
-    {
-
-        return [
-            "product" => [
-                'id' => $this->product->getId(),
-                'imagePath' => $this->product->getImage(),
-                'title' => $this->product->getName(),
-                'description' => $this->product->getDescription(),
-                'price' => $this->product->getPrice()
-            ],
-            "qty" => $this->qty
-        ];
-    }
-    public static function fromArray(array $data)
-    {
-        $productData = $data['product'];
-        $product = new Product($productData['id'], $productData['imagePath'], $productData['title'], $productData['description'], $productData['price']);
-        return new self($product, $data['qty']);
-    }
-
-
-
-    
+  
 }
