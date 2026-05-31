@@ -9,6 +9,7 @@ use App\Classes\Models\Auth\Auth;
 use App\Classes\Core\Database\Database;
 use App\Classes\Core\Session;
 
+
 if ($action = Session::flash("action")) {
     Session::get_message($action);
 }
@@ -27,6 +28,7 @@ if (
     );
 }
 
+
 $page = $_GET['page'] ?? 'home';
 
 $route = match ($page) {
@@ -39,13 +41,17 @@ $route = match ($page) {
     'login' => './App/views/auth/login.php',
     'register' => './App/views/auth/register.php',
     'contact' => './App/views/store/contact.php',
+    'ViewUsers' => './App/views/admin/View_Users.php',
+    'AddUsers' => './App/views/admin/Add_Users.php',
+    'update_user' => './App/views/admin/update-user.php',
     'logincontroll', 'registercontroll', 'logoutcontroll' => './App/classes/controllers/AuthController.php',
+    'Addusercontroll','deleteusercontroll' ,'updateusercontroll','infousercontroll'=> './App/classes/controllers/UserController.php',
     '404' => './App/views/store/404.php'
 };
 
 
 
-$adminPages = ['dashboard', 'products', 'add-product', 'update-product'];
+$adminPages = ['dashboard', 'products', 'add-product', 'update-product','ViewUsers','AddUsers','Addusercontroll','deleteusercontroll','updateusercontroll','update_user','infousercontroll'];
 $storePages = ['home', 'product-details', 'register', 'registercontroll', "login", "logincontroll", "logoutcontroll","contact"];
 
 if (in_array($page, $adminPages)) {

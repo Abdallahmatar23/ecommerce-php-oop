@@ -314,7 +314,7 @@
                                                 <li><a href="index.php?page=blog-details">blog details</a></li>
                                             </ul>
                                         </li> -->
-                                        <li><a href="index.php?page="> Contact Us</a></li>
+                                        <li><a href="index.php?page=contact"> Contact Us</a></li>
                                     </ul>
                                 </nav>
                             </div>

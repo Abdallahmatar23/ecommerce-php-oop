@@ -30,33 +30,61 @@ class User
     public function add_user(
         string $name,
         string $email,
+        string $phone,
         string $password,
         string $role
     ) {
-        $passwordhash=password_hash($password,PASSWORD_DEFAULT);
-        $sql ='INSERT INTO `users` (`name`,`email`,`password`,`role`) VALUES (?,?,?,?)';
-        $params = [$name, $email, $passwordhash, $role];
-        $stmt = $this->db->query($sql,$params);
+        $passwordhash = password_hash($password, PASSWORD_DEFAULT);
+        $sql = 'INSERT INTO `users` (`name`,`email`,`phone`,`password`,`role`) VALUES (?,?,?,?,?)';
+        $params = [$name, $email, $phone, $passwordhash, $role];
+        $stmt = $this->db->query($sql, $params);
 
-        if($stmt){
+        if ($stmt) {
             return $this->db->lastInsertId();
         }
         return false;
     }
 
-    public function getAll(){
-        $sql = 'SELECT * FROM users';
+    public function getAll()
+    {
+        $sql = "SELECT * FROM users ORDER BY FIELD (`role`,'superadmin','admin','user')";
         $params = [];
 
-        return $this->db->fetchAll($sql,$params);
+        return $this->db->fetchAll($sql, $params);
     }
 
-    public function getById(int $id){
+    public function getById( $id)
+    {
         $sql = 'SELECT * FROM users WHERE id = ?';
         $params = [$id];
-        return $this->db->fetch($sql,$params);
+        return $this->db->fetch($sql, $params);
     }
 
-    public function update(){}
-    public function delete(){}
+    public function update()
+    {
+
+    }
+    public function deleteoneuser($id)
+    {
+        $sql = 'DELETE FROM `users` WHERE id=?';
+        $params = [$id];
+        $this->db->query($sql, $params);
+        return true;
+    }
+    public function updateoneuser($id,$name,$email,$role,$phone,$update_at)
+    {
+        $sql = 'UPDATE 
+                    `users` 
+                    SET
+                        `name`=?
+                        ,`email`=?
+                        ,`role`=?
+                        ,`phone`=?
+                        ,`updated_at`=?
+                    WHERE 
+                        `id`=?';
+        $params = [$name,$email,$role,$phone,$update_at,$id];
+        $this->db->query($sql, $params);
+        return true;
+    }
 }

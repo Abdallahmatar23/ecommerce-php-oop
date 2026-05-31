@@ -15,7 +15,9 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="public/assets/admin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -386,6 +388,26 @@
           </li>
         </ul>
       </li><!-- End Forms Nav -->
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#users-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Users</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+
+        <ul id="users-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="index.php?page=ViewUsers">
+              <i class="bi bi-circle"></i><span>View Users</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.php?page=AddUsers">
+              <i class="bi bi-circle"></i><span>Add Users</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Users Nav -->
 
       <li class="nav-item">
         <a class="nav-link " data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">

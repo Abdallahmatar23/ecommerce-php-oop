@@ -52,12 +52,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-                                    <div class="single-acc-field boxes">
-                                        <input type="checkbox" id="checkbox">
-                                        <label for="checkbox">Remember me</label>
-                                    </div>
                                     <div class="single-acc-field">
                                         <button type="submit">Send Message</button>
                                     </div>

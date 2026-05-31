@@ -47,6 +47,11 @@ $dataUser = Session::get("data");
                                             value="<?=$dataUser["email"] ?? ""?>" placeholder="Enter your Email">
                                     </div>
                                     <div class="single-acc-field">
+                                        <label for="email">Phone</label>
+                                        <input type="text" id="phone" name="phone"
+                                            value="<?=$dataUser["phone"] ?? ""?>" placeholder="Enter your phone">
+                                    </div>
+                                    <div class="single-acc-field">
                                         <label for="password">Password</label>
                                         <input type="text" id="password" name="password" 
                                             placeholder=" At least 8 Charecter">

@@ -10,6 +10,7 @@ class AuthController
 {
     private string $name;
     private string $email;
+    private string $phone;
     private string $password;
     private string $conpassword;
 
@@ -23,12 +24,14 @@ class AuthController
 
         $this->name = trim($_POST["name"] ?? "");
         $this->email = trim($_POST["email"] ?? "");
+        $this->phone = trim($_POST["phone"] ?? "");
         $this->password = trim($_POST["password"] ?? "");
         $this->conpassword = trim($_POST["conpassword"] ?? "");
 
         Session::set("data", [
             "name" => $this->name,
-            "email" => $this->email
+            "email" => $this->email,
+            "phone" => $this->phone
         ]);
     }
 
@@ -39,6 +42,7 @@ class AuthController
             $error = (new Validator)->registerRules(
                 $this->name,
                 $this->email,
+                $this->phone,
                 $this->password,
                 $this->conpassword
             )
@@ -51,7 +55,7 @@ class AuthController
             exit;
         }
 
-        $success = (new User())->add_user($this->name, $this->email, $this->password, "user");
+        $success = (new User())->add_user($this->name, $this->email, $this->phone, $this->password, "user");
         if ($success) {
             Session::set(
                 "user",
@@ -92,9 +96,9 @@ class AuthController
         Session::set("data", [
             "email" => $this->email
         ]);
-        
+
         $users = (new User())->getAll();
-        
+
 
         foreach ($users as $user) {
 
@@ -169,16 +173,25 @@ class AuthController
 
 }
 
-
-if ($_GET["page"] == "registercontroll") {
-    (new AuthController())->register();
+if (isset($_GET["page"]) && $_GET["page"] == "registercontroll") {
+    (new UserController())->Adduser();
+    exit;
 }
-if ($_GET["page"] == "logincontroll") {
-    (new AuthController())->login();
+if (isset($_GET["page"]) && $_GET["page"] == "logincontroll") {
+    (new UserController())->Adduser();
+    exit;
 }
-if ($_GET["page"] == "logoutcontroll") {
-    (new AuthController())->logout();
+if (isset($_GET["page"]) && $_GET["page"] == "logoutcontroll") {
+    (new UserController())->Adduser();
+    exit;
 }
+Session::set(
+    "action",
+    [
+        "message" => "Error. Please try again.",
+        "type" => "error"
+    ]
+);
 header("location:index.php?page=home");
 exit;
 
