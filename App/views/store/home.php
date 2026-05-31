@@ -1,14 +1,9 @@
-<?php
-// echo '<pre>';
-// var_dump($products);
-// echo '</pre>';
-// die;
-?>
-
+<?php $products = $products ?? [] ?>
 
 <!--slider area start-->
 <section class="slider_section d-flex align-items-center" data-bgimg="assets/store/assets/img/slider/slider3.jpg">
     <div class="slider_area owl-carousel">
+
         <div class="single_slider d-flex align-items-center">
             <div class="container">
                 <div class="row">
@@ -27,8 +22,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
+
         <div class="single_slider d-flex align-items-center">
             <div class="container">
                 <div class="row">
@@ -48,6 +43,7 @@
                 </div>
             </div>
         </div>
+
         <div class="single_slider d-flex align-items-center">
             <div class="container">
                 <div class="row">
@@ -67,32 +63,50 @@
                 </div>
             </div>
         </div>
+
     </div>
 </section>
 <!--slider area end-->
 
+
 <!--Tranding product-->
 <section class="pt-60 pb-30 gray-bg">
     <div class="container">
-        <div class="row">
+
+        <div class="row align-items-center mb-3">
             <div class="col text-center">
                 <div class="section-title">
                     <h2>Tranding Products</h2>
                 </div>
             </div>
+
+            <!-- VIEW ALL -->
+            <div class="col text-end">
+                <a href="index.php?page=products" class="view-all-btn">
+                    View All →
+                </a>
+            </div>
         </div>
+
         <div class="row justify-content-center">
+
             <?php foreach ($products as $product): ?>
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+
                     <div class="single-tranding mb-30">
-                        <a href="index.php?page=product-details&id=<?= $product->getId() ?>">
-                            <div class="tranding-pro-img">
-                                <img src="<?= $product->getImage()?>" alt="">
+
+                        <a href="<?= BASE_URL . '/product/details/' . $product->getId(); ?>">
+
+                            <!-- IMAGE (SOFT IMPROVED) -->
+                            <div class="tranding-pro-img soft-img">
+                                <img src="<?= $product->getImage() ?: 'assets/store/assets/img/product/default.png' ?>" alt="">
                             </div>
+
                             <div class="tranding-pro-title">
                                 <h3><?= $product->getName() ?></h3>
                                 <h4><?= $product->getDescription() ?></h4>
                             </div>
+
                             <div class="tranding-pro-price">
                                 <div class="price_box">
                                     <span class="current_price">
@@ -103,16 +117,24 @@
                                     </span>
                                 </div>
                             </div>
+
                         </a>
+
                     </div>
+
                 </div>
             <?php endforeach; ?>
+
         </div>
-</section><!--Tranding product-->
+
+</section>
+<!--Tranding product-->
+
 
 <!--Features area-->
 <section class="features-area pt-60 pb-60">
     <div class="container">
+
         <div class="row">
             <div class="col text-center">
                 <div class="section-title">
@@ -120,86 +142,122 @@
                 </div>
             </div>
         </div>
+
         <div class="row justify-content-center">
+
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                 <div class="single-features">
                     <img src="assets/store/assets/img/icon/1.png" alt="">
                     <h3>Impressive Distance</h3>
-                    <p>consectetur adipisicing elit. Ut praesentium earum, blanditiis, voluptatem repellendus rerum voluptatibus dignissimos</p>
+                    <p>consectetur adipisicing elit. Ut praesentium earum...</p>
                 </div>
             </div>
+
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                 <div class="single-features">
                     <img src="assets/store/assets/img/icon/2.png" alt="">
                     <h3>100% self safe</h3>
-                    <p>consectetur adipisicing elit. Ut praesentium earum, blanditiis, voluptatem repellendus rerum voluptatibus dignissimos</p>
+                    <p>consectetur adipisicing elit. Ut praesentium earum...</p>
                 </div>
             </div>
+
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                 <div class="single-features">
                     <img src="assets/store/assets/img/icon/3.png" alt="">
                     <h3>Awesome Support</h3>
-                    <p>consectetur adipisicing elit. Ut praesentium earum, blanditiis, voluptatem repellendus rerum voluptatibus dignissimos</p>
+                    <p>consectetur adipisicing elit. Ut praesentium earum...</p>
                 </div>
             </div>
+
             <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
-                <a href="#"><img src="assets/store/assets/img/product/2.png" alt=""></a>
+                <a href="#">
+                    <img src="assets/store/assets/img/product/2.png" alt="">
+                </a>
             </div>
+
         </div>
+
     </div>
-</section><!--Features area-->
+</section>
+<!--Features area-->
+
 
 <!--Features area-->
 <section class="gray-bg pt-60 pb-60">
     <div class="container">
+
         <div class="row">
+
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 order-lg-1 order-md-1 order-sm-1">
                 <div class="pro-details-feature">
                     <img src="assets/store/assets/img/product/1.png" alt="">
                 </div>
             </div>
+
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 order-lg-2 order-md-2 order-sm-2">
                 <div class="pro-details-feature">
                     <h3>Long Lasting</h3>
-                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+                    <p>There are many variations of passages of Lorem Ipsum...</p>
                     <ul>
                         <li>It is a long established fact that</li>
                         <li>Many desktop publishing</li>
-                        <li>Various versions have evolved over the years, sometimes by accident</li>
+                        <li>Various versions have evolved over the years</li>
                         <li>There are many variations of passages</li>
                         <li>If you are going to use a</li>
-                        <li>Alteration in some form, by injected</li>
+                        <li>Alteration in some form</li>
                     </ul>
                     <a href="#">$70 Buy now</a>
                 </div>
             </div>
+
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 order-lg-3 order-md-4 order-sm-4 order-4">
                 <div class="pro-details-feature">
                     <h3>Impressive Distance</h3>
-                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+                    <p>There are many variations of passages of Lorem Ipsum...</p>
                     <ul>
                         <li>It is a long established fact that</li>
                         <li>Many desktop publishing</li>
-                        <li>Various versions have evolved over the years, sometimes by accident</li>
+                        <li>Various versions have evolved over the years</li>
                         <li>There are many variations of passages</li>
                         <li>If you are going to use a</li>
-                        <li>Alteration in some form, by injected</li>
+                        <li>Alteration in some form</li>
                     </ul>
                     <a href="#">$70 Buy now</a>
                 </div>
             </div>
+
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 order-lg-4 order-md-3 order-sm-3 order-3">
                 <div class="pro-details-feature">
                     <img src="assets/store/assets/img/product/1.png" alt="">
                 </div>
             </div>
+
         </div>
+
     </div>
-</section><!--Features area-->
+</section>
+<!--Features area-->
+
 
 <!--Other product-->
-<section class="pt-60 pb-30">
+<section class="pt-60 pb-30 gray-bg">
+    <div class="row align-items-center">
+
+        <div class="col text-center">
+            <div class="section-title">
+                <h2>Other collections</h2>
+            </div>
+        </div>
+
+        <div class="col text-end">
+            <a href="index.php?page=products" class="view-all-btn">
+                View All →
+            </a>
+        </div>
+
+    </div>
     <div class="container">
+
         <div class="row">
             <div class="col text-center">
                 <div class="section-title">
@@ -207,19 +265,25 @@
                 </div>
             </div>
         </div>
+
         <div class="row justify-content-center">
-    
+
             <?php foreach ($products as $product): ?>
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+
                     <div class="single-tranding mb-30">
-                        <a href="index.php?page=product-details&id=<?= $product->getId() ?>">
-                            <div class="tranding-pro-img">
-                                <img src="<?= $product->getImage()?>" alt="">
+
+                        <a href="<?= BASE_URL . '/product/details/' . $product->getId(); ?>">
+
+                            <div class="tranding-pro-img soft-img">
+                                <img src="<?= $product->getImage() ?: 'assets/store/assets/img/product/default.png' ?>" alt="">
                             </div>
+
                             <div class="tranding-pro-title">
                                 <h3><?= $product->getName() ?></h3>
                                 <h4><?= $product->getDescription() ?></h4>
                             </div>
+
                             <div class="tranding-pro-price">
                                 <div class="price_box">
                                     <span class="current_price">
@@ -230,69 +294,67 @@
                                     </span>
                                 </div>
                             </div>
+
                         </a>
+
                     </div>
+
                 </div>
             <?php endforeach; ?>
+
         </div>
 
-</section><!--Other product-->
+</section>
+<!--Other product-->
+
 
 <!--Testimonials-->
 <section class="pb-60 pt-60 gray-bg">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-10">
+
                 <div class="testimonial_are">
                     <div class="testimonial_active owl-carousel">
+
                         <article class="single_testimonial">
                             <figure>
                                 <div class="testimonial_thumb">
                                     <a href="#"><img src="assets/store/assets/img/about/team-3.jpg" alt=""></a>
                                 </div>
                                 <figcaption class="testimonial_content">
-                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45</p>
-                                    <h3><a href="#">Kathy Young</a><span> - CEO of SunPark</span></h3>
+                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
+                                    <h3>Kathy Young <span> - CEO of SunPark</span></h3>
                                 </figcaption>
-
                             </figure>
                         </article>
+
                         <article class="single_testimonial">
                             <figure>
                                 <div class="testimonial_thumb">
                                     <a href="#"><img src="assets/store/assets/img/about/team-1.jpg" alt=""></a>
                                 </div>
                                 <figcaption class="testimonial_content">
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even</p>
-                                    <h3><a href="#">John Sullivan</a><span> - Customer</span></h3>
+                                    <p>There are many variations of passages of Lorem Ipsum.</p>
+                                    <h3>John Sullivan <span> - Customer</span></h3>
                                 </figcaption>
-
                             </figure>
                         </article>
-                        <article class="single_testimonial">
-                            <figure>
-                                <div class="testimonial_thumb">
-                                    <a href="#"><img src="assets/store/assets/img/about/team-2.jpg" alt=""></a>
-                                </div>
-                                <figcaption class="testimonial_content">
-                                    <p>College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites</p>
-                                    <h3><a href="#">Jenifer Brown</a><span> - Manager of AZ</span></h3>
-                                </figcaption>
 
-                            </figure>
-                        </article>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
-</section><!--/Testimonials-->
+</section>
 
 
 <!--shipping area start-->
 <section class="shipping_area">
     <div class="container">
         <div class=" row">
+
             <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                 <div class="single_shipping">
                     <div class="shipping_icone">
@@ -304,6 +366,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                 <div class="single_shipping">
                     <div class="shipping_icone">
@@ -315,6 +378,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                 <div class="single_shipping">
                     <div class="shipping_icone">
@@ -326,6 +390,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                 <div class="single_shipping">
                     <div class="shipping_icone">
@@ -337,6 +402,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </section>

@@ -2,29 +2,35 @@
 
 namespace App\Core;
 
+use App\Core\Session\Session;
 use App\Models\Cart;
+use App\Repositories\CartItemRepository;
 
 abstract class Controller
 {
+    private int $total = 0;
     private int $totalQty = 0;
     private array $cart_items = [];
     public function __construct()
     {
-        $this->loadCart();
+       
     }
     public  function view(string  $file, array $data = [])
     {
-        // $cart_items = $this->cart_items;
-        // $totalQty = $this->totalQty;
+        $this->loadCart();
+        $cart_items = $this->cart_items;
+        $totalQty = $this->totalQty;
+        $total = $this->total;
+      
         if (getRole() == 'admin') {
-            require VIEWS . "layout/admin/header.php";
+            require VIEWS . "layout/admin/sidebar.php";
         } else {
             require VIEWS . "layout/store/header.php";
         }
         if (file_exists(VIEWS . "{$file}.php")) {
             ob_start();
             extract($data);
-        
+
             require VIEWS . "{$file}.php";
             ob_end_flush();
         } else {
@@ -39,32 +45,32 @@ abstract class Controller
     public  function loadCart()
     {
 
-        if (getSession('user')) {
+        if (Session::get('user')) {
 
 
-            if (!getSession('cart_item') && empty(getSession('cart_item'))) {
-                $cart = new Cart();
-                $this->cart_items = $cart->getCarts(getSession('user')['id'])?? [];
-                $cartData = [];
+            // if (!Session::get('cart_item') && empty(Session::get('cart_item'))) {
+            // $cartData = [];
+            $cart_items = (new CartItemRepository())->getCartItems(Session::get('user')['id']);
 
-                if ($this->cart_items) {
-                    foreach ($this->cart_items  as $cart_item) {
-                        $cartData[] = [
-                            "product" => $cart_item->getProduct(),
-                            "qty" => $cart_item->getQty()
-                        ];
+            if ($cart_items) {
+                foreach ($cart_items  as $cart_item) {
 
-                        $this->totalQty += $cart_item->getQty();
+                    
+                    $this->totalQty += $cart_item->getQty();
+                    $this->total += $cart_item->getProduct()->getPrice();
                     }
-                    setSession('cart_items', $cartData);
-                    setSession('totalQty', $this->totalQty);
-                    // $this->cart_items = getSession('cart_items');
-                    // $this->totalQty = getSession('totalQty');
-                }
-            } else {
-                $this->cart_items = getSession('cart_items');
-                $this->totalQty = getSession('totalQty');
+                    $this->cart_items = $cart_items;
+                    // Session::set('cart_items', $cartData);
+                    // Session::set('totalQty', $this->totalQty);
+                    // Session::set('total', $this->total);
+                // $this->cart_items = getSession('cart_items');
+                // $this->totalQty = getSession('totalQty');
             }
         }
+        // } else {
+        //     $this->cart_items = Session::get('cart_items') ?? [];
+        //     $this->totalQty = Session::get('totalQty') ?? 0;
+        //     $this->totalQty = Session::get('total') ?? 0;
+        // }
     }
 }

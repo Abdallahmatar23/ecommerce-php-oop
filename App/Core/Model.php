@@ -28,24 +28,8 @@ class Model
     return $this->query($sql, $params)->fetchAll(PDO::FETCH_ASSOC);
   }
 
-
   public function fetch(string $sql, array $params = [])
   {
     return $this->query($sql, $params)->fetch((PDO::FETCH_ASSOC));
   }
-  
-  public function fetchObject(string $sql, string $class, array $params = [])
-  {
-    $stmt = $this->query($sql, $params);
-    $stmt->setFetchMode(PDO::FETCH_CLASS, $class);
-    return $stmt->fetch();
-  }
 }
-    
-    // public   function getProducts()
-    // {
-    //     $sql = "SELECT * FROM products";
-    //     $$res = $this->db->query($sql);
-    //     $Products = $res->fetchAll(PDO::FETCH_ASSOC);
-    //     return  $Products;
-    // }

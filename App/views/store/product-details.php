@@ -1,13 +1,3 @@
-<?php
-
-// use App\Models\Product;
-// var_dump($product);
-// die();
-// $id = $_GET['id'];
-// $product = (new Product())->getById($id);
-// echo $id;
-// die();
-?>
 
 
 <!--product details start-->
@@ -18,32 +8,32 @@
                 <div class="product-details-tab">
                     <div id="img-1" class="zoomWrapper single-zoom">
                         <a href="#">
-                            <img id="zoom1" src="assets/store/assets/img/product/details-1.jpg" data-zoom-image="assets/store/assets/img/product/details-1.jpg" alt="big-1">
+                            <img id="zoom1" src="<?= BASE_URL ?>assets/store/assets/img/product/details-1.jpg" data-zoom-image="<?= BASE_URL ?>assets/store/assets/img/product/details-1.jpg" alt="big-1">
                         </a>
                     </div>
                     <div class="single-zoom-thumb">
                         <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
                             <li>
-                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/store/assets/img/product/details-2.jpg" data-zoom-image="assets/store/assets/img/product/details-2.jpg">
-                                    <img src="assets/store/assets/img/product/details-2.jpg" alt="zo-th-1" />
+                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="<?= BASE_URL ?>assets/store/assets/img/product/details-2.jpg" data-zoom-image="<?= BASE_URL ?>assets/store/assets/img/product/details-2.jpg">
+                                    <img src="<?= BASE_URL ?>assets/store/assets/img/product/details-2.jpg" alt="zo-th-1" />
                                 </a>
 
                             </li>
                             <li>
-                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/store/assets/img/product/details-3.jpg" data-zoom-image="assets/store/assets/img/product/details-3.jpg">
-                                    <img src="assets/store/assets/img/product/details-3.jpg" alt="zo-th-1" />
+                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="<?= BASE_URL ?>assets/store/assets/img/product/details-3.jpg" data-zoom-image="<?= BASE_URL ?>assets/store/assets/img/product/details-3.jpg">
+                                    <img src="<?= BASE_URL ?>assets/store/assets/img/product/details-3.jpg" alt="zo-th-1" />
                                 </a>
 
                             </li>
                             <li>
-                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/store/assets/img/product/details-4.jpg" data-zoom-image="assets/store/assets/img/product/details-4.jpg">
-                                    <img src="assets/store/assets/img/product/details-4.jpg" alt="zo-th-1" />
+                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="<?= BASE_URL ?>assets/store/assets/img/product/details-4.jpg" data-zoom-image="<?= BASE_URL ?>assets/store/assets/img/product/details-4.jpg">
+                                    <img src="<?= BASE_URL ?>assets/store/assets/img/product/details-4.jpg" alt="zo-th-1" />
                                 </a>
 
                             </li>
                             <li>
-                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/store/assets/img/product/details-1.jpg" data-zoom-image="assets/store/assets/img/product/details-1.jpg">
-                                    <img src="assets/store/assets/img/product/details-1.jpg" alt="zo-th-1" />
+                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="<?= BASE_URL ?>assets/store/assets/img/product/details-1.jpg" data-zoom-image="<?= BASE_URL ?>assets/store/assets/img/product/details-1.jpg">
+                                    <img src="<?= BASE_URL ?>assets/store/assets/img/product/details-1.jpg" alt="zo-th-1" />
                                 </a>
 
                             </li>
@@ -53,7 +43,7 @@
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="product_d_right">
-                    <form action="#">
+                    <form action="<?= BASE_URL ?>cart/handle/add/<?= $product->getId()?>/1" method="POST">
 
                         <h1><?= $product->getName() ?></h1>
                         <div class=" product_ratting">
@@ -68,7 +58,7 @@
 
                         </div>
                         <div class="price_box">
-                            <span class="current_price">$<?= $product->priceAfterDiscount() ?></span>
+                            <span class="current_price">$<?= $product->priceAfterDiscount()?></span>
                             <span class="old_price">$ <?= $product->getPrice() ?></span>
 
                         </div>
@@ -82,7 +72,7 @@
                                     <li>Out of Stock</li>
                                 <?php endif; ?>
                             </ul>
-                            <p><?= $product->getDescription() ?> </p>
+                            <p><?= $product->getDescription()?> </p>
                         </div>
                         <div class="product_timing">
                             <div data-countdown="2023/12/15"></div>
@@ -99,9 +89,17 @@
                         </div>
                         <h4>Only <?= $product->getStock() ?> left in stock</h4>
                         <div class="product_variant quantity">
-                            <label>quantity</label>
-                            <input min="1" max="100" value="1" type="number">
+                             <?php if ($qty >= 1): ?>
+                            <a class=" button p-2 h-auto mx-2" href="<?= BASE_URL ?>cart/handle/change/<?= $product->getId() ?>/-1">-</a>
+                            <label>quantity : </label> <span><?= $qty ?></span>
+                            <a class=" button p-2 h-auto mx-2" href="<?= BASE_URL ?>cart/handle/change/<?= $product->getId() ?>/1">+</a>
+                        <?php else: ?>
+                            <label>quantity : </label><span><?= $qty?></span>
                             <button class="button" type="submit">add to cart</button>
+                        <?php endif; ?>
+                            <!-- <label>quantity</label>
+                            <input min="1" max="100" value="1" type="number">
+                            <button class="button" type="submit">add to cart</button> -->
 
                         </div>
                         <div class=" product_d_action">

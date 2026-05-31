@@ -1,63 +1,122 @@
+<?php
+
+if (!empty($_SESSION['errors'])) {
+    $errors = $_SESSION['errors'];
+    $oldData = $_SESSION['old'] ?? '';
+}
+
+?>
+
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Add Product</h1>
+        <h2 class="mb-3">Add Product</h2>
     </div>
 
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
 
-                <div class="card">
-                    <div class="card-body">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
 
-                        <form method="POST" action="<?= BASE_URL ?>product/store" enctype="multipart/form-data">
-                        <!-- <form method="POST" action="http://localhost/ecommerce/public/product/store" enctype="multipart/form-data"> -->
+                        <div class="mb-4">
+                            <h5 class="mb-0">Product Information</h5>
+                            <small class="text-muted">Fill all required fields below</small>
+                        </div>
 
-                            <div class="row mb-3 mt-3">
-                                <label class="col-sm-2 col-form-label">Name</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="name" class="form-control">
-                                </div>
+                        <form method="POST"
+                            action="<?= BASE_URL ?>product/store"
+                            enctype="multipart/form-data">
+
+                            <!-- Name -->
+                            <div class="mb-3">
+                                <label class="form-label">Name</label>
+                                <input type="text"
+                                    name="name"
+                                    class="form-control"
+                                    placeholder="Enter product name"
+                                    value="<?= $oldData['name'] ?? '' ?>">
+
+                                <?php showIndexedMessage('name'); ?>
                             </div>
 
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Description</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="description" class="form-control">
-                                </div>
+                            <!-- Description -->
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <input type="text"
+                                    name="description"
+                                    class="form-control"
+                                    placeholder="Enter product description"
+                                    value="<?= $oldData['description'] ?? '' ?>">
+
+                                <?php showIndexedMessage('description'); ?>
                             </div>
 
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Price</label>
-                                <div class="col-sm-10">
-                                    <input type="number" min="1" name="price" class="form-control">
-                                </div>
+                            <!-- Price -->
+                            <div class="mb-3">
+                                <label class="form-label">Price</label>
+                                <input type="number"
+                                    min="1"
+                                    name="price"
+                                    class="form-control"
+                                    placeholder="0.00"
+                                    value="<?= $oldData['price'] ?? '' ?>">
+
+                                <?php showIndexedMessage('price'); ?>
                             </div>
 
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Stock</label>
-                                <div class="col-sm-10">
-                                    <input type="number" min="0" name="stock" class="form-control">
-                                </div>
+                            <!-- Stock -->
+                            <div class="mb-3">
+                                <label class="form-label">Stock</label>
+                                <input type="number"
+                                    min="0"
+                                    name="stock"
+                                    class="form-control"
+                                    placeholder="Quantity"
+                                    value="<?= $oldData['stock'] ?? '' ?>">
+
+                                <?php showIndexedMessage('stock'); ?>
                             </div>
 
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Image</label>
-                                <div class="col-sm-10">
-                                    <input type="file" name="image" class="form-control">
-                                </div>
+                            <!-- Image -->
+                            <div class="mb-3">
+                                <label class="form-label">Image</label>
+                                <input type="file"
+                                    name="image"
+                                    class="form-control">
+
+                                <?php showIndexedMessage('image'); ?>
                             </div>
 
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Discount</label>
-                                <div class="col-sm-10">
-                                    <input type="number" min="0.01" max="0.99" step="0.01" name="discount" class="form-control">
-                                </div>
+                            <!-- Discount -->
+                            <div class="mb-4">
+                                <label class="form-label">Discount</label>
+                                <input type="number"
+                                    min="0.01"
+                                    max="0.99"
+                                    step="0.01"
+                                    name="discount"
+                                    class="form-control"
+                                    placeholder="0.00"
+                                    value="<?= $oldData['discount'] ?? '' ?>">
+
+                                <?php showIndexedMessage('discount'); ?>
                             </div>
 
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Add Product</button>
+                            <!-- Buttons -->
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                <a href="<?= BASE_URL ?>product/products"
+                                    class="btn btn-outline-secondary">
+                                    Cancel
+                                </a>
+
+                                <button type="submit"
+                                    class="btn btn-primary px-4">
+                                    Add Product
+                                </button>
+
                             </div>
 
                         </form>
@@ -70,3 +129,7 @@
     </section>
 
 </main>
+
+<?php
+unset($_SESSION['errors']);
+?>

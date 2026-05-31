@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Repositories;
 
 use App\Core\Model;
+use App\Models\Product;
 
 class ProductRepository extends Model
 {
@@ -32,37 +33,22 @@ class ProductRepository extends Model
         $rows = $this->fetchAll($sql, $params);
         $products = [];
         foreach ($rows as $row) {
-            $products[] = new Product($row['id'], $row['image_url'], $row['name'], $row['description'], $row['price'], $row['stock'], $row['discount'],$row['created_at']);
+            $products[] = new Product($row['id'], $row['image_url'], $row['name'], $row['description'], $row['price'], $row['stock'], $row['discount']);
         }
         return $products;
         // $stmt = $this->db->query($sql,$params);
         // return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
     public function getById(int $id)
     {
         $sql = 'SELECT * FROM products WHERE id = ?';
         $params = [$id];
-        $row = $this->fetch($sql, $params);
-
-        if (!$row) return null;
-
-        return new Product(
-            $row['id'],
-            $row['image_url'],
-            $row['name'],
-            $row['description'],
-            $row['price'],
-            $row['stock'],
-            $row['discount'],
-            $row['created_at']
-        );
-    }
-    public function getObjectById(int $id)
-    {
-        $sql = 'SELECT * FROM products WHERE id = ?';
-        $params = [$id];
-        return $this->fetchObject($sql, Product::class, $params);
+        $product = $this->fetch($sql, $params);
+        if ($product) {
+            return new Product($product['id'], $product['image_url'], $product['name'], $product['description'], $product['price'], $product['stock'], $product['discount']);
+        }
     }
     public function getCreationTime(int $id)
     {

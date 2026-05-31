@@ -20,20 +20,18 @@ class Product extends  Model
     private string $image;
     private int $stock;
     private float $discount;
-    private string $created_at;
 
 
-    public function __construct(int $id = 0, string $img = "", string $title = "", string $des = "", float $price = 0, int $stock = 0, float $discount = 0, string $created_at = "" )
+    public function __construct(int $id = 0, string $img = "", string $name = "", string $des = "", float $price = 0, int $stock = 0, float $discount = 0)
     {
         parent::__construct();
         $this->id = $id;
         $this->image = $img;
-        $this->name = $title;
+        $this->name = $name;
         $this->price = $price;
         $this->description = $des;
         $this->stock = $stock;
         $this->discount = $discount;
-        $this->created_at = $created_at;
     }
 
     // public function create(
@@ -94,9 +92,9 @@ class Product extends  Model
     {
         return $this->image;
     }
-    public function getCreatedAt()
+    public function getDiscount()
     {
-        return $this->created_at;
+        return $this->discount;
     }
     public function setDiscount(float $discount)
     {
