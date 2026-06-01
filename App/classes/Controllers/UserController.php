@@ -180,38 +180,39 @@ class UserController
             "message" => $success ? "User updated successfully" : "Update failed",
             "type" => $success ? "success" : "error"
         ]);
+        Session::remove("info");
 
         header("Location: index.php?page=ViewUsers");
         exit;
     }
+
 }
 
 
-if (isset($_GET["page"]) && $_GET["page"] == "Addusercontroll") {
-    (new UserController())->Adduser();
+$page = $_GET["page"] ?? "";
+
+$routes = [
+
+    "Addusercontroll"    => "Adduser",
+
+    "deleteusercontroll" => "deleteuser",
+
+    "infousercontroll"   => "infouser",
+
+    "updateusercontroll" => "updateuser",
+];
+
+if (isset($routes[$page])) {
+
+    $method = $routes[$page];
+    (new UserController())->$method();
     exit;
-}
-if (isset($_GET["page"]) && $_GET["page"] == "deleteusercontroll") {
-    (new UserController())->deleteuser();
-    exit;
-}
-if (isset($_GET["page"]) && $_GET["page"] == "infousercontroll") {
-    (new UserController())->infouser();
-    exit;
-}
-if (isset($_GET["page"]) && $_GET["page"] == "updateusercontroll") {
-    (new UserController())->updateuser();
-    exit;
+    
 }
 
-Session::set(
-    "action",
-    [
-        "message" => "Error. Please try again.",
-        "type" => "error"
-    ]
-);
-header("location:index.php?page=dashboard");
+
+
+header("location:index.php?page=404");
 exit;
 
 

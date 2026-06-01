@@ -44,15 +44,17 @@ $route = match ($page) {
     'ViewUsers' => './App/views/admin/View_Users.php',
     'AddUsers' => './App/views/admin/Add_Users.php',
     'update_user' => './App/views/admin/update-user.php',
+    'ContactsUsers' => './App/views/admin/contacts-user.php',
     'logincontroll', 'registercontroll', 'logoutcontroll' => './App/classes/controllers/AuthController.php',
-    'Addusercontroll','deleteusercontroll' ,'updateusercontroll','infousercontroll'=> './App/classes/controllers/UserController.php',
+    'Addusercontroll', 'deleteusercontroll', 'updateusercontroll', 'infousercontroll' => './App/classes/controllers/UserController.php',
+    'contactcontroller','readcontactcontroll' => './App/classes/controllers/ContactController.php',
     '404' => './App/views/store/404.php'
 };
 
 
+$adminPages = ['dashboard', 'products', 'add-product', 'update-product', 'ViewUsers', 'AddUsers', 'Addusercontroll', 'deleteusercontroll', 'updateusercontroll', 'update_user', 'infousercontroll', 'ContactsUsers','readcontactcontroll'];
 
-$adminPages = ['dashboard', 'products', 'add-product', 'update-product','ViewUsers','AddUsers','Addusercontroll','deleteusercontroll','updateusercontroll','update_user','infousercontroll'];
-$storePages = ['home', 'product-details', 'register', 'registercontroll', "login", "logincontroll", "logoutcontroll","contact"];
+$storePages = ['home', 'product-details', 'register', 'registercontroll', 'login', 'logincontroll', 'logoutcontroll', 'contact', 'contactcontroller'];
 
 if (in_array($page, $adminPages)) {
     require 'App/views/layout/admin/sidebar.php';
@@ -64,4 +66,7 @@ if (in_array($page, $storePages)) {
     require 'App/views/layout/store/header.php';
     require $route;
     require 'App/views/layout/store/footer.php';
+}
+if($page=="404"){
+    require './App/views/store/404.php';
 }

@@ -9,12 +9,6 @@ use App\Classes\Core\Database;
 
 class User
 {
-    // private int $id;
-    // private string $name;
-    // private string $email;
-    // private float $role;
-    // private string $craete_at;
-    // private int $update_at;
 
     private Database $db;
 
@@ -53,7 +47,7 @@ class User
         return $this->db->fetchAll($sql, $params);
     }
 
-    public function getById( $id)
+    public function getById($id)
     {
         $sql = 'SELECT * FROM users WHERE id = ?';
         $params = [$id];
@@ -71,7 +65,7 @@ class User
         $this->db->query($sql, $params);
         return true;
     }
-    public function updateoneuser($id,$name,$email,$role,$phone,$update_at)
+    public function updateoneuser($id, $name, $email, $role, $phone, $update_at)
     {
         $sql = 'UPDATE 
                     `users` 
@@ -83,8 +77,9 @@ class User
                         ,`updated_at`=?
                     WHERE 
                         `id`=?';
-        $params = [$name,$email,$role,$phone,$update_at,$id];
+        $params = [$name, $email, $role, $phone, $update_at, $id];
         $this->db->query($sql, $params);
         return true;
     }
+
 }

@@ -111,7 +111,7 @@ class Validator
 
         return false;
     }
-    public function update($name, $email, $role, $phone,$id)
+    public function update($name, $email, $role, $phone, $id)
     {
         $ALLROLE = ["admin", "user", "superadmin"];
         $data = [
@@ -142,4 +142,22 @@ class Validator
         return false;
     }
 
+    public function contact($name, $email, $mes)
+    {
+        $data = [
+            "Name" => $name,
+            "Email" => $email,
+            "Message" => $mes
+        ];
+        foreach ($data as $label => $value) {
+            if ($error = $this->validate_required($value, $label)) {
+                return $error;
+            }
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return "Invalid email address";
+        }
+        return false;
+    }
 }

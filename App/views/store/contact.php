@@ -1,4 +1,14 @@
-<!--breadcrumbs area start-->
+<?php
+use App\Classes\Models\User;
+use App\Classes\Core\Session;
+
+
+if (Session::check("contact")) {
+    $datauser = Session::get("contact");
+} elseif (Session::check("user")) {
+    $datauser = (new User())->getById($_SESSION["user"]["id"]);
+}
+?>
 <div class="breadcrumbs_area">
     <div class="container">
         <div class="row">
@@ -31,24 +41,27 @@
                         </div>
                         <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
                             <div class="account-content">
-                                <form action="#">
+                                <form action="index.php?page=contactcontroller" method="POST">
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="single-acc-field">
                                                 <label for="name">Name</label>
-                                                <input type="text" placeholder="Name" id="name">
+                                                <input type="text" placeholder="Name" id="name"
+                                                    value="<?= $datauser["name"] ?? "" ?>" name="name">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="single-acc-field">
                                                 <label for="email">Email</label>
-                                                <input type="email" placeholder="Email" id="email">
+                                                <input type="text" placeholder="Email" id="email"
+                                                    value="<?= $datauser["email"] ?? "" ?>" name="email">
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="single-acc-field">
                                                 <label for="msg">Message</label>
-                                                <textarea name="msg" id="msg" rows="4"></textarea>
+                                                <textarea name="message" id="msg" rows="4"><?= $datauser["message"] ?? "" ?></textarea>
+                                             
                                             </div>
                                         </div>
                                     </div>

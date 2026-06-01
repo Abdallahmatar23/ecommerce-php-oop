@@ -405,6 +405,9 @@
             <a href="index.php?page=AddUsers">
               <i class="bi bi-circle"></i><span>Add Users</span>
             </a>
+            <a href="index.php?page=ContactsUsers">
+              <i class="bi bi-circle"></i><span>Contacts Users</span>
+            </a>
           </li>
         </ul>
       </li><!-- End Users Nav -->

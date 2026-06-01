@@ -74,27 +74,27 @@
                                     <td><?= $user["email"] ?></td>
 
                                     <td><?= $user["phone"] ?? "" ?></td>
-
+                                    
                                     <td>
-
+                                        
                                         <?php if ($user["role"] === "user"): ?>
-
+                                            
                                             <span class="badge bg-primary">
                                                 <?= $user["role"] ?>
                                             </span>
-
-                                        <?php else: ?>
-
-                                            <span class="badge bg-danger">
-                                                <?= $user["role"] ?>
-                                            </span>
-
-                                        <?php endif; ?>
-
-                                    </td>
-
-                                    <td><?= $user["created_at"] ?? "" ?></td>
-                                    <td><?= $user["updated_at"] ?? "" ?></td>
+                                            
+                                            <?php else: ?>
+                                                
+                                                <span class="badge bg-danger">
+                                                    <?= $user["role"] ?>
+                                                </span>
+                                                
+                                                <?php endif; ?>
+                                                
+                                            </td>
+                                            
+                                            <td><?= $user["created_at"] ?? "" ?></td>
+                                            <td><?= $user["updated_at"] ?? "" ?></td>
                                     <td>
 
                                         <a href="index.php?page=infousercontroll&id=<?= $user["id"] ?></a>"
@@ -103,7 +103,7 @@
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
 
-                                        <a href="index.php?page=infousercontroll&id=<?= $user["id"] ?>"
+                                        <a href="index.php?page=deleteusercontroll&id=<?= $user["id"] ?>"
                                             class="btn btn-sm btn-danger"
                                             onclick="return confirm('Are you sure you want to delete this user?')">
                                             <i class="bi bi-trash"></i>
