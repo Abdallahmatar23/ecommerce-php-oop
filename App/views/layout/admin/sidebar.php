@@ -1,3 +1,22 @@
+<?php
+$currentUrl = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+
+function isActiveUrl($path, $currentUrl)
+{
+  return str_contains($currentUrl, trim($path, '/')) ? 'active' : '';
+}
+
+function isOpenMenu($keywords, $currentUrl)
+{
+  foreach ($keywords as $word) {
+    if (str_contains($currentUrl, $word)) {
+      return true;
+    }
+  }
+  return false;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -359,77 +378,140 @@
         </ul>
       </li><!-- End Components Nav -->
 
+      <!-- ================= PRODUCTS ================= -->
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="<?= BASE_URL ?>#">
-          <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
+
+        <a class="nav-link <?= isOpenMenu(['product'], $currentUrl) ? '' : 'collapsed' ?>"
+          data-bs-toggle="collapse"
+          href="#products-nav">
+
+          <i class="bi bi-box"></i>
+          <span>Products</span>
+          <i class="bi bi-chevron-down ms-auto"></i>
+
         </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+        <ul id="products-nav"
+          class="nav-content collapse <?= isOpenMenu(['product'], $currentUrl) ? 'show' : '' ?>">
+
           <li>
-            <a href="<?= BASE_URL . '/product/create' ?>">
-              <i class="bi bi-circle"></i><span>Add Product Form</span>
+            <a class="<?= isActiveUrl('product/products', $currentUrl) ?>"
+              href="<?= BASE_URL . 'product/products' ?>">
+              <i class="bi bi-circle"></i>
+              <span>All Products</span>
             </a>
           </li>
+
           <li>
-            <a href="<?= BASE_URL ?>forms-elements">
-              <i class="bi bi-circle"></i><span>Form Elements</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL ?>forms-layouts">
-              <i class="bi bi-circle"></i><span>Form Layouts</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL ?>forms-editors">
-              <i class="bi bi-circle"></i><span>Form Editors</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL ?>forms-validation">
-              <i class="bi bi-circle"></i><span>Form Validation</span>
+            <a class="<?= isActiveUrl('product/create', $currentUrl) ?>"
+              href="<?= BASE_URL . 'product/create' ?>">
+              <i class="bi bi-circle"></i>
+              <span>Add Product</span>
             </a>
           </li>
 
         </ul>
-      </li><!-- End Forms Nav -->
 
+      </li><!-- End Product Nav -->
+
+
+      <!-- ================= ORDERS ================= -->
       <li class="nav-item">
-        <a class="nav-link " data-bs-target="#tables-nav" data-bs-toggle="collapse" href="<?= BASE_URL ?>#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
+
+        <a class="nav-link <?= isOpenMenu(['order'], $currentUrl) ? '' : 'collapsed' ?>"
+          data-bs-toggle="collapse"
+          href="#orders-nav">
+
+          <i class="bi bi-cart"></i>
+          <span>Orders</span>
+          <i class="bi bi-chevron-down ms-auto"></i>
+
         </a>
-        <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+
+        <ul id="orders-nav"
+          class="nav-content collapse <?= isOpenMenu(['order'], $currentUrl) ? 'show' : '' ?>">
+
           <li>
-            <a href="<?= BASE_URL ?>tables-general">
-              <i class="bi bi-circle"></i><span>General Tables</span>
+            <a class="<?= isActiveUrl('order/orders', $currentUrl) ?>"
+              href="<?= BASE_URL . 'order/orders' ?>">
+              <i class="bi bi-circle"></i>
+              <span>All Orders</span>
             </a>
           </li>
-          <li>
-            <a href="<?= BASE_URL ?>tables-data" class="">
-              <i class="bi bi-circle"></i><span>Data Tables</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL . '/product/products' ?>">
-              <i class="bi bi-circle"></i><span>Users Table</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL . '/product/products' ?>">
-              <i class="bi bi-circle"></i><span>Products Table</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL . '/product/products' ?>">
-              <i class="bi bi-circle"></i><span>Orders Table</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL . '/product/products' ?>">
-              <i class="bi bi-circle"></i><span>Contact Table</span>
-            </a>
-          </li>
+
         </ul>
-      </li><!-- End Tables Nav -->
+
+      </li><!-- End Order Nav -->
+
+
+      <!-- ================= USERS (AUTH MANAGEMENT) ================= -->
+      <li class="nav-item">
+
+        <a class="nav-link <?= isOpenMenu(['user'], $currentUrl) ? '' : 'collapsed' ?>"
+          data-bs-toggle="collapse"
+          href="#auth-nav">
+
+          <i class="bi bi-shield-lock"></i>
+          <span>Users</span>
+          <i class="bi bi-chevron-down ms-auto"></i>
+
+        </a>
+
+        <ul id="auth-nav"
+          class="nav-content collapse <?= isOpenMenu(['user'], $currentUrl) ? 'show' : '' ?>">
+
+          <!-- All Users -->
+          <li>
+            <a class="<?= isActiveUrl('user/users', $currentUrl) ?>"
+              href="<?= BASE_URL . 'user/users' ?>">
+              <i class="bi bi-circle"></i>
+              <span>All Users</span>
+            </a>
+          </li>
+
+          <!-- Add User -->
+          <li>
+            <a class="<?= isActiveUrl('user/create', $currentUrl) ?>"
+              href="<?= BASE_URL . 'user/create' ?>">
+              <i class="bi bi-circle"></i>
+              <span>Add User</span>
+            </a>
+          </li>
+
+        </ul>
+
+      </li><!-- End User Management Nav -->
+
+
+      <!-- ================= CONTACT ================= -->
+      <li class="nav-item">
+
+        <a class="nav-link <?= isOpenMenu(['contact'], $currentUrl) ? '' : 'collapsed' ?>"
+          data-bs-toggle="collapse"
+          href="#contact-nav">
+
+          <i class="bi bi-envelope"></i>
+          <span>Contact</span>
+          <i class="bi bi-chevron-down ms-auto"></i>
+
+        </a>
+
+        <ul id="contact-nav"
+          class="nav-content collapse <?= isOpenMenu(['contact'], $currentUrl) ? 'show' : '' ?>">
+
+          <li>
+            <a class="<?= isActiveUrl('contact/messages', $currentUrl) ?>"
+              href="<?= BASE_URL . 'contact/messages' ?>">
+              <i class="bi bi-circle"></i>
+              <span>Messages</span>
+            </a>
+          </li>
+
+        </ul>
+
+      </li><!-- End Contact Nav -->
+
+<!-- End Tables Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="<?= BASE_URL ?>#">
