@@ -166,25 +166,38 @@ class AuthController
             time() - 1,
             "/"
         );
+
+        // Session::remove("user");
         Session::removeall();
+        Session::set(
+            "action",
+            [
+                "message" => "See you soon",
+                "type" => "error"
+            ]
+        );
         header("location:index.php?page=home");
         exit;
     }
 
 }
 
-if (isset($_GET["page"]) && $_GET["page"] == "registercontroll") {
-    (new UserController())->Adduser();
+$page = $_GET["page"] ?? "";
+
+$routes = [
+    "registercontroll" => "register",
+    "logincontroll" => "login",
+    "logoutcontroll" => "logout",
+];
+
+if (isset($routes[$page])) {
+
+    $method = $routes[$page];
+
+    (new AuthController())->$method();
     exit;
 }
-if (isset($_GET["page"]) && $_GET["page"] == "logincontroll") {
-    (new UserController())->Adduser();
-    exit;
-}
-if (isset($_GET["page"]) && $_GET["page"] == "logoutcontroll") {
-    (new UserController())->Adduser();
-    exit;
-}
+
 Session::set(
     "action",
     [
@@ -192,6 +205,7 @@ Session::set(
         "type" => "error"
     ]
 );
+
 header("location:index.php?page=home");
 exit;
 

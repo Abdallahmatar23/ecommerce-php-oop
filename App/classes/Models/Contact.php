@@ -53,5 +53,8 @@ class Contact
 
         return $this->db->query($sql, $params);
     }
+    // public function delete(){
+
+    // }
 
 }

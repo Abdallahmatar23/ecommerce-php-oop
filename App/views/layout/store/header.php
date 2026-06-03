@@ -301,6 +301,7 @@
                                                 <li><a href="index.php?page=">Frequently Questions</a></li>
                                                 <li><a href="index.php?page=login">login</a></li>
                                                 <li><a href="index.php?page=register">register</a></li>
+                                                <li><a href="index.php?page=logoutcontroll">Logout</a></li>
                                                 <li><a href="index.php?page=">Forget Password</a></li>
                                                 <li><a href="index.php?page=404">Error 404</a></li>
                                                 <li><a href="index.php?page=">cart</a></li>

@@ -60,17 +60,16 @@ $dataUser = Session::get("info"); ?>
                     <div class="mb-3">
                         <label class="form-label">Role</label>
                         <select name="role" class="form-select">
-                            <option value="">-- Select Role --</option>
-
-                            <option <?= ($dataUser["role"] == "superadmin") ? "selected" : "" ?> value="superadmin">
+                            <option <?= (($dataUser["role"] ?? "") == "superadmin") ? "selected" : "" ?>
+                                value="superadmin">
                                 Superadmin
                             </option>
 
-                            <option <?= ($dataUser["role"] == "admin") ? "selected" : "" ?> value="admin">
+                            <option <?= (($dataUser["role"] ?? "") == "admin") ? "selected" : "" ?> value="admin">
                                 Admin
                             </option>
 
-                            <option <?= ($dataUser["role"] == "user") ? "selected" : "" ?> value="user">
+                            <option <?= (($dataUser["role"] ?? "") == "user") ? "selected" : "" ?> value="user">
                                 User
                             </option>
                         </select>
