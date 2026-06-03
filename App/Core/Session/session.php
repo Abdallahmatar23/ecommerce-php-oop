@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Core\Session;
+
 session_start();
 
 class Session
@@ -54,6 +55,4 @@ class Session
             echo "<div class='{$type}-message'>{$text}</div>";
         }
     }
-
-    
 }

@@ -23,15 +23,17 @@ class CartService
 
             $this->items =  $this->cartItemRepository->getCartItems(Session::get("user")['id']) ?? [];
         } else {
-
+          
             redirect("login");
         }
+       
+
     }
 
     public function add(int $product_id, int  $qty)
     {
 
-
+      
 
         if (Session::check('user')) {
             if (!$this->cartRepository->getCartByUser(Session::get('user')['id'])) {
@@ -44,7 +46,7 @@ class CartService
 
                 $this->cartItemRepository->addCartItem($cart_id, $product_id, $qty);
             }
-        }
+        } 
     }
 
     public function change(int $product_id, int  $qty)
@@ -65,6 +67,7 @@ class CartService
                 return;
             }
         }
+
     }
 
     public function remove(int  $product_id)
@@ -89,4 +92,6 @@ class CartService
         $cart_id = $this->cartRepository->getCartByUser($user['id']);
         if ($user) $this->cartItemRepository->deleteCartItems($cart_id);
     }
+
+
 }

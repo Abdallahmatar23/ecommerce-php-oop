@@ -66,7 +66,7 @@ class AuthController extends Controller
             header("Location:" . BASE_URL . "register");
             exit;
         } else {
-            Session::set("error", "User registered successfully.");
+            Session::set("error", "User Is Exists .");
 
             header("Location:" . BASE_URL . "register");
             exit;

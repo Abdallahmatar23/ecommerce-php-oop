@@ -21,7 +21,7 @@ class App
 
     private function prepare()
     {
-        $url = trim(str_replace("ecommerce-db/public/", "", $_SERVER['REQUEST_URI']), "/");
+        $url = trim(str_replace("ecommerce/public/", "", $_SERVER['REQUEST_URI']), "/");
         $this->page = !empty($url) ? $url : "home";
         $url = explode("/", $url);
         $this->controller = !empty($url[0]) ? ucwords($url[0]) . "Controller" : "";

@@ -4,10 +4,9 @@
 
 namespace App\Models;
 
-use App\Core\Model;
 use App\Models\Product;
 
-class CartItem extends Model
+class CartItem 
 {
     private Product $product;
     private int $qty;

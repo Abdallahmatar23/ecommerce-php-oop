@@ -36,13 +36,13 @@
                                         <label for="email">Email</label>
                                         <input type="text" name="email" id="email" value="<?= $_SESSION["data"]["email"] ?? "" ?>"
                                             placeholder="Enter your Email">
-                                        <?php showIndexedMessage("email") ?>
+                                        <?php showErrorField("email") ?>
                                     </div>
                                     <div class="single-acc-field">
                                         <label for="password">Password</label>
                                         <input type="text" name="password" id="password"
                                             placeholder="Enter your password">
-                                        <?php showIndexedMessage("pass") ?>
+                                        <?php showErrorField("pass") ?>
                                     </div>
                                     <div class="single-acc-field boxes">
                                         <input type="checkbox" id="checkbox" name="remember">
