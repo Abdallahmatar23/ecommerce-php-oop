@@ -1,7 +1,7 @@
 <?php
 
-     use App\Core\Session\Session;
- ?>
+use App\Core\Session\Session;
+?>
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -53,8 +53,8 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="top_right text-right">
                                 <ul>
-                                    <li><a href="<?= BASE_URL ?>my-account ">Account</a></li>
-                                    <li><a href="<?= BASE_URL ?>checkout ">Checkout</a></li>
+                                    <li><a href="<?= BASE_URL ?>page/my-account ">Account</a></li>
+                                    <li><a href="<?= BASE_URL ?>page/checkout ">Checkout</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -83,9 +83,7 @@
                                 </div>
                                 <div class="middel_right_info">
 
-                                   
-
-                                    <?php  if (Session::check('user')) : ?>
+                                    <?php if (Session::check('user')) : ?>
                                         <div class="header_wishlist">
                                             <a href="<?= BASE_URL ?>my-account"><img src="assets/img/user.png" alt=""></a>
                                         </div>
@@ -95,11 +93,43 @@
                                     <?php endif; ?>
                                     <div class="mini_cart_wrapper">
                                         <a href="javascript:void(0)"><img src="<?= BASE_URL ?>assets/store/assets/img/shopping-bag.png" alt=""></a>
-                                        <span class="cart_quantity"><?= $totalQty?></span>
+                                        <span class="cart_quantity"><?= $totalQty ?></span>
                                         <!--mini cart-->
                                         <div class="mini_cart">
-                                        
-                                            <?php if ($cart_items): ?>
+                                           
+
+                                            <?php if (isset($cart_items)): ?>
+
+                                                <?php foreach ($cart_items as $cart_item):  ?>
+                                                    <div class="cart_item">
+                                                        <div class="cart_img">
+                                                            <a href="#"><img src="<?= BASE_URL ?><?= $cart_item->getProduct()->getImage() ?>" alt=""></a>
+                                                        </div>
+                                                        <div class="cart_info">
+                                                            <a href="#"><?= $cart_item->getProduct()->getName() ?></a>
+                                                            <p>Qty: <?= $cart_item->getQty() ?> X <span> $<?= $cart_item->getProduct()->getPrice() ?> </span></p>
+                                                        </div>
+                                                        <div class="cart_remove">
+                                                            <a href="#"><i class="ion-android-close"></i></a>
+                                                        </div>
+                                                    </div>
+                                                <?php endforeach; ?>
+
+
+
+                                                <div class="mini_cart_table">
+                                                    <div class="cart_total">
+                                                        <span>Sub total:</span>
+                                                        <span class="price">$<?= $total ?></span>
+                                                    </div>
+                                                    <div class="cart_total mt-10">
+                                                        <span>total:</span>
+                                                        <span class="price">$<?= $total ?></span>
+                                                    </div>
+                                                </div>
+                                            <?php else: ?>
+                                                <h4 class="text-center bg-warning m-2 p-2"> cart is not exists</h4>
+                                            <?php endif; ?>
 
                                                 <?php foreach ($cart_items as $cart_item):  ?>
                                                     <div class="cart_item">

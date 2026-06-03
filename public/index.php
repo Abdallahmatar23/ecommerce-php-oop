@@ -8,7 +8,12 @@ require_once CORE . '/helpers/function.php';
 
 use App\Core\Session\Session;
 use App\Core\App;
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+// var_dump(Session::get("user"));
+// var_dump($_COOKIE["user_role"]);
+// die;
 if ($action = Session::flash("action")) {
     Session::get_message($action);
 }

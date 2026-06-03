@@ -31,6 +31,7 @@
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                             <div class="account-content">
+<<<<<<< HEAD
                                 <form action="<?= BASE_URL ?>auth/login" method="POST">
                                     <div class="single-acc-field">
                                         <label for="email">Email</label>
@@ -43,6 +44,23 @@
                                         <input type="text" name="password" id="password"
                                             placeholder="Enter your password">
                                         <?php showIndexedMessage("pass") ?>
+=======
+                                <?= showMessage() ?>
+                                
+                                <form action="<?= BASE_URL ?>auth/login" method="POST">
+                                    <div class="single-acc-field">
+                                        <label for="email">Email</label>
+                                        <input type="text" name="email" id="email" value="<?= $_SESSION["data"] ["email"]?? "" ?>"
+                                            placeholder="Enter your Email">
+                                            <?= showErrorField("email") ?>
+                                        </div>
+                                        
+                                        <div class="single-acc-field">
+                                            <label for="password">Password</label>
+                                            <input type="text" name="password" id="password"
+                                            placeholder="Enter your password">
+                                            <?= showErrorField("pass") ?>
+>>>>>>> develop
                                     </div>
                                     <div class="single-acc-field boxes">
                                         <input type="checkbox" id="checkbox" name="remember">

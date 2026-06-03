@@ -30,31 +30,33 @@
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                             <div class="account-content">
-
+                                <?= showMessage() ?>
+                               
                                 <form action="<?= BASE_URL ?>auth/register" method="POST">
                                     <div class="single-acc-field">
                                         <label for="name">Name</label>
-                                        <input type="text" id="name" name="name"
+                                        <input type="text" id="name" name="name" value="<?= $dataUser["name"] ?? "" ?>"
                                             placeholder="Enter Your Name">
-                                        <?php showIndexedMessage('name') ?>
+                                            <?= showErrorField("name") ?>
                                     </div>
                                     <div class="single-acc-field">
                                         <label for="email">Email</label>
                                         <input type="text" id="email" name="email"
-                                            placeholder="Enter your Email">
-                                        <?php showIndexedMessage("email") ?>
-                                    </div>
+                                            value="<?=$dataUser["email"] ?? ""?>" placeholder="Enter your Email">
+                                       <?= showErrorField("email") ?>
+                                        </div>
                                     <div class="single-acc-field">
                                         <label for="password">Password</label>
-                                        <input type="text" id="password" name="password" placeholder=" At least 8 Charecter">
-                                        <?php showIndexedMessage("pass") ?>
-                                    </div>
-                                    <div class="single-acc-field">
+                                        <input type="text" id="password" name="password" 
+                                            placeholder=" At least 8 Charecter">
+                                               <?= showErrorField("pass") ?>
+                                            </div>
+                                            <div class="single-acc-field">
                                         <label for="password">Confirm Password</label>
-                                        <input type="text" id="password" name="confirm_password"
-                                            placeholder=" Enter Password again">
-                                        <?php showIndexedMessage("password_confirm") ?>
+                                        <input type="text" id="password" name="confirm_password" 
+                                        placeholder=" Enter Password agin">
                                     </div>
+                                    <?= showErrorField("password_confirm") ?>
                                     <div class="single-acc-field boxes">
                                         <input type="checkbox" id="checkbox">
                                         <label for="checkbox">I'm not a robot</label>

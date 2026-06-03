@@ -55,6 +55,7 @@ class Session
         }
     }
 
+<<<<<<< HEAD
     // public static function setSession(string $name, string|array $value)
     // {
     //     $_SESSION[$name] = $value;
@@ -72,4 +73,7 @@ class Session
     // {
     //     return isset($_SESSION[$name]);
     // }
+=======
+    
+>>>>>>> develop
 }
