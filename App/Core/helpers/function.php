@@ -2,22 +2,31 @@
 
 use App\Core\Session\Session;
 
-function showMessage(string $field = "")
+function showErrorField(string $field = "")
 {
     if (isset($_SESSION['errors'])) {
         foreach ($_SESSION['errors'] as $key => $error) {
             if ($key == $field) {
 
                 echo "<div class='alert alert-danger m-2 '> {$error} </div>";
-                // echo "<div class='alert alert-danger m-2 '> {$error[0]} </div>";
                 unset($_SESSION['errors'][$key]);
             }
         }
-    } elseif (isset($_SESSION['success'])) {
+    }
+}
+
+function showMessage()
+{
+    if (isset($_SESSION['success'])) {
         $msg = $_SESSION['success'];
         echo "<div class='alert alert-success m-2 '> {$msg}</div>";
 
         unset($_SESSION['success']);
+    } elseif (isset($_SESSION['error'])) {
+        $msg = $_SESSION['error'];
+        echo "<div class='alert alert-danger m-2 '> {$msg}</div>";
+
+        unset($_SESSION['error']);
     }
 }
 function getErrors()
