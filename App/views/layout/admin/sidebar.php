@@ -199,8 +199,8 @@ $contactOpen = menuOpen(['contact'], $currentUrl);
       <ul id="contact-nav"
           class="nav-content collapse <?= $contactOpen ? 'show' : '' ?>">
         <li>
-          <a class="<?= isActive('contact/messages', $currentUrl) ?>"
-             href="<?= BASE_URL ?>contact/messages">
+          <a class="<?= isActive('contact/contacts', $currentUrl) ?>"
+             href="<?= BASE_URL ?>contact/contacts">
             <i class="bi bi-circle"></i><span>Messages</span>
           </a>
         </li>

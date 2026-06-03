@@ -23,22 +23,22 @@ class ContactController extends Controller
     {
 
 
-        if ($_SERVER['REQUEST_METHOD'] != "POST" && !isset($_GET["id"])) {
+        // if ($_SERVER['REQUEST_METHOD'] != "POST" && !isset($_GET["id"])) {
 
 
-            header("location:index.php?page=AddUsers");
-            exit;
-        } else {
-            $this->name = trim($_POST["name"] ?? "");
-            $this->email = trim($_POST["email"] ?? "");
-            $this->message = trim($_POST["msg"] ?? "");
+        //     // header("location:index.php?page=AddUsers");
+        //     // exit;
+        // } else {
+        $this->name = trim($_POST["name"] ?? "");
+        $this->email = trim($_POST["email"] ?? "");
+        $this->message = trim($_POST["msg"] ?? "");
 
-            Session::set("contact", [
-                "name" => $this->name,
-                "email" => $this->email,
-                "message" => $this->message,
-            ]);
-        }
+        Session::set("contact", [
+            "name" => $this->name,
+            "email" => $this->email,
+            "message" => $this->message,
+        ]);
+        // }
     }
 
 
@@ -94,8 +94,17 @@ class ContactController extends Controller
         header("Location: " . VIEWS . "admin/ContactsUsers");
         exit;
     }
-}
 
+    public function contacts()
+    {
+        $contacts = (new Contact())->getAllContact();
+
+        $this->view('admin/ContactsUsers', [
+            'contacts' => $contacts
+        ]);
+    }
+
+}
 
 
 

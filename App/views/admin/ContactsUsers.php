@@ -1,3 +1,11 @@
+<?php if (empty($contacts)): ?>
+
+    <div class="alert alert-info">
+        No messages found.
+    </div>
+
+
+<?php endif; ?>
 <main id="main" class="main">
 
     <div class="pagetitle">
@@ -33,8 +41,7 @@
 
                 $allContact = (new Contact())->getAllContact();
 
-                foreach ($allContact as $contact):
-                ?>
+                foreach ($contacts as $contact): ?>
 
                     <div class="border rounded p-3 mb-3">
 
@@ -57,7 +64,8 @@
 
                         <?php if ($contact["is_read"] == 0): ?>
 
-                            <a href="index.php?page=readcontactcontroll&id=<?= $contact["id"] ?>" class="btn btn-danger btn-sm"
+                            <a href="index.php?page=readcontactcontroll&id=<?= $contact["id"] ?>"
+                                class="btn btn-danger btn-sm"
                                 onclick="return confirm('Have you read this message?')">
 
                                 Unread
@@ -67,9 +75,7 @@
                         <?php else: ?>
 
                             <button class="btn btn-success btn-sm">
-
                                 Read
-
                             </button>
 
                         <?php endif; ?>
