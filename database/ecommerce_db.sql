@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 31, 2026 at 12:15 PM
+-- Generation Time: Jun 03, 2026 at 08:36 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -92,11 +92,13 @@ CREATE TABLE `contacts` (
 --
 
 INSERT INTO `contacts` (`id`, `user_id`, `name`, `email`, `message`, `is_read`, `created_at`) VALUES
-(1, 2, 'Ahmed Mohamed', 'ahmed@gmail.com', 'Hello, I have an issue with my recent order. Can you please check the shipping status?', 0, '2026-05-31 12:15:30'),
-(2, 3, 'Sara Ali', 'sara@gmail.com', 'I completed the payment but the order still appears as pending in my account.', 0, '2026-05-31 12:15:30'),
-(3, NULL, 'Mohamed Tarek', 'mohamed@gmail.com', 'I would like to know when the Nike Air Max will be available again in size 42.', 1, '2026-05-31 12:15:30'),
-(4, NULL, 'Fatma Hassan', 'fatma@gmail.com', 'The website design is great. I would love to see a wishlist feature added in future updates.', 0, '2026-05-31 12:15:30'),
-(5, 2, 'Ahmed Mohamed', 'ahmed@gmail.com', 'Thank you for resolving my previous issue. Everything is working correctly now.', 1, '2026-05-31 12:15:30');
+(1, 2, 'Ahmed Mohamed', 'ahmed@gmail.com', 'Hello, I placed an order three days ago and it has not been shipped yet. Could you please check its status?', 0, '2026-06-03 08:36:04'),
+(2, 3, 'Sara Ali', 'sara@gmail.com', 'I completed my payment successfully, but my order still appears as pending. Please help.', 0, '2026-06-03 08:36:04'),
+(3, NULL, 'Mohamed Tarek', 'mohamed@gmail.com', 'I would like to know when the Smart Watch will be back in stock.', 1, '2026-06-03 08:36:04'),
+(4, NULL, 'Fatma Hassan', 'fatma@gmail.com', 'The website looks great. I suggest adding a wishlist feature in a future update.', 0, '2026-06-03 08:36:04'),
+(5, 2, 'Ahmed Mohamed', 'ahmed@gmail.com', 'Thank you for your support. My previous issue has been resolved successfully.', 1, '2026-06-03 08:36:04'),
+(6, 3, 'Sara Ali', 'sara@gmail.com', 'Can I change the shipping address after placing an order?', 0, '2026-06-03 08:36:04'),
+(7, NULL, 'Omar Hassan', 'omar@gmail.com', 'Do you offer discounts for bulk purchases?', 0, '2026-06-03 08:36:04');
 
 -- --------------------------------------------------------
 
@@ -197,6 +199,7 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` enum('user','admin','superadmin') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
+  `phone` char(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -205,13 +208,13 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'Admin User', 'admin@drophut.com', '$2y$10$adminhash', 'admin', '2026-05-13 16:47:56', '2026-05-13 16:47:56'),
-(2, 'Ahmed Mohamed', 'ahmed@gmail.com', '$2y$10$userhash1', 'user', '2026-05-13 16:47:56', '2026-05-13 16:47:56'),
-(3, 'Sara Ali', 'sara@gmail.com', '$2y$10$userhash2', 'user', '2026-05-13 16:47:56', '2026-05-13 16:47:56'),
-(4, 'Justin Santana', 'xuvo@mailinator.com', '$2y$10$cCOqKnMqPZC0mUdKJ/i1O.oyurS1ql5gzVu86In2Dtd0YO8v4G.jm', 'user', '2026-05-30 09:14:39', '2026-05-30 09:14:39'),
-(5, 'user', 'user@user.com', '$2y$10$b/Txy9ewOeUvd1antWefK.ocLcUUhsStFSyxRX/c88oiw1N3/djU6', 'admin', '2026-05-30 23:37:04', '2026-05-31 09:03:05'),
-(6, 'Dustin Hess', 'jowysi@mailinator.com', '$2y$10$C0t3gZIXTq8H87GaCKfyX.teFq0ib4YRMamN9mT67fzUfr6ljg.cS', 'user', '2026-05-31 01:08:28', '2026-05-31 01:08:28');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `phone`, `created_at`, `updated_at`) VALUES
+(1, 'Admin User', 'admin@drophut.com', '$2y$10$adminhash', 'admin', '', '2026-05-13 16:47:56', '2026-05-13 16:47:56'),
+(2, 'Ahmed Mohamed', 'ahmed@gmail.com', '$2y$10$userhash1', 'user', '', '2026-05-13 16:47:56', '2026-05-13 16:47:56'),
+(3, 'Sara Ali', 'sara@gmail.com', '$2y$10$userhash2', 'user', '', '2026-05-13 16:47:56', '2026-05-13 16:47:56'),
+(4, 'Justin Santana', 'xuvo@mailinator.com', '$2y$10$cCOqKnMqPZC0mUdKJ/i1O.oyurS1ql5gzVu86In2Dtd0YO8v4G.jm', 'user', '', '2026-05-30 09:14:39', '2026-05-30 09:14:39'),
+(5, 'user', 'user@user.com', '$2y$10$b/Txy9ewOeUvd1antWefK.ocLcUUhsStFSyxRX/c88oiw1N3/djU6', 'admin', '', '2026-05-30 23:37:04', '2026-05-31 09:03:05'),
+(6, 'Dustin Hess', 'jowysi@mailinator.com', '$2y$10$C0t3gZIXTq8H87GaCKfyX.teFq0ib4YRMamN9mT67fzUfr6ljg.cS', 'user', '', '2026-05-31 01:08:28', '2026-05-31 01:08:28');
 
 --
 -- Indexes for dumped tables
@@ -236,7 +239,8 @@ ALTER TABLE `cart_items`
 -- Indexes for table `contacts`
 --
 ALTER TABLE `contacts`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_contact_user` (`user_id`);
 
 --
 -- Indexes for table `orders`
@@ -286,7 +290,7 @@ ALTER TABLE `cart_items`
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -328,6 +332,12 @@ ALTER TABLE `cart`
 ALTER TABLE `cart_items`
   ADD CONSTRAINT `fk_cartitems_cart` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_cartitems_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `contacts`
+--
+ALTER TABLE `contacts`
+  ADD CONSTRAINT `fk_contact_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `orders`
