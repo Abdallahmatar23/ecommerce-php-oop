@@ -66,7 +66,7 @@ class OrderController extends Controller
 
         $order = $this->orderRepo->getById($orderId);
 
-        if (!$order || $order['user_id'] != Session::get("user")['id']) {
+        if (!$order || $order->getId() != Session::get("user")['id']) {
             return $this->view("store/404");
         }
 

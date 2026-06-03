@@ -1,42 +1,33 @@
 <?php
 $currentUrl = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
-function isActiveUrl($path, $currentUrl)
+function isActive(string $segment, string $currentUrl): string
 {
-  return str_contains($currentUrl, trim($path, '/')) ? 'active' : '';
+    return str_contains($currentUrl, $segment) ? 'active' : '';
 }
 
-function isOpenMenu($keywords, $currentUrl)
+function menuOpen(array $segments, string $currentUrl): bool
 {
-  foreach ($keywords as $word) {
-    if (str_contains($currentUrl, $word)) {
-      return true;
+    foreach ($segments as $s) {
+        if (str_contains($currentUrl, $s)) return true;
     }
-  }
-  return false;
+    return false;
 }
-?>
 
+$productOpen = menuOpen(['product'], $currentUrl);
+$orderOpen   = menuOpen(['order'],   $currentUrl);
+$userOpen    = menuOpen(['user'],    $currentUrl);
+$contactOpen = menuOpen(['contact'], $currentUrl);
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — <?= BASE_URL ?></title>
 
-  <title>Tables / Data - NiceAdmin Bootstrap Template</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
   <link href="<?= BASE_URL ?>assets/admin/assets/img/favicon.png" rel="icon">
-  <link href="<?= BASE_URL ?>assets/admin/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="<?= BASE_URL ?>https://fonts.gstatic.com" rel="preconnect">
-  <link href="<?= BASE_URL ?>https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Nunito:300,400,600,700|Poppins:300,400,500,600,700" rel="stylesheet">
   <link href="<?= BASE_URL ?>assets/admin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="<?= BASE_URL ?>assets/admin/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="<?= BASE_URL ?>assets/admin/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -44,572 +35,232 @@ function isOpenMenu($keywords, $currentUrl)
   <link href="<?= BASE_URL ?>assets/admin/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="<?= BASE_URL ?>assets/admin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="<?= BASE_URL ?>assets/admin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
   <link href="<?= BASE_URL ?>assets/admin/assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: NiceAdmin
-  * Updated: Nov 17 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <style>
+    /*
+     * FIX: NiceAdmin main.js adds data-bs-parent to ALL collapse items,
+     * turning the sidebar into a strict accordion (only one open at a time).
+     * We override that by removing the parent constraint via CSS + JS fix below.
+     * The .nav-content items must control their own open/close state independently.
+     */
+    .sidebar-nav .nav-content {
+      transition: none !important; /* prevent flash on page load */
+    }
+  </style>
 </head>
-
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
 
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="<?= BASE_URL ?>index" class="logo d-flex align-items-center">
-        <img src="assets/admin/assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
-      </a>
-      <i class="bi bi-list toggle-sidebar-btn"></i>
-    </div><!-- End Logo -->
+  <div class="d-flex align-items-center justify-content-between">
+    <a href="<?= BASE_URL ?>admin/index" class="logo d-flex align-items-center">
+      <img src="<?= BASE_URL ?>assets/admin/assets/img/logo.png" alt="">
+      <span class="d-none d-lg-block">NiceAdmin</span>
+    </a>
+    <i class="bi bi-list toggle-sidebar-btn"></i>
+  </div>
 
-    <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!-- End Search Bar -->
+  <div class="search-bar">
+    <form class="search-form d-flex align-items-center" method="POST" action="#">
+      <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+      <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+    </form>
+  </div>
 
-    <nav class="header-nav ms-auto">
-      <ul class="d-flex align-items-center">
+  <nav class="header-nav ms-auto">
+    <ul class="d-flex align-items-center">
 
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="<?= BASE_URL ?>#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
-
-        <li class="nav-item dropdown">
-
-          <a class="nav-link nav-icon" href="<?= BASE_URL ?>#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              You have 4 new notifications
-              <a href="<?= BASE_URL ?>#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="<?= BASE_URL ?>#">Show all notifications</a>
-            </li>
-
-          </ul><!-- End Notification Dropdown Items -->
-
-        </li><!-- End Notification Nav -->
-
-        <li class="nav-item dropdown">
-
-          <a class="nav-link nav-icon" href="<?= BASE_URL ?>#" data-bs-toggle="dropdown">
-            <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number">3</span>
-          </a><!-- End Messages Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-            <li class="dropdown-header">
-              You have 3 new messages
-              <a href="<?= BASE_URL ?>#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="<?= BASE_URL ?>#">
-                <img src="assets/admin/assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Maria Hudson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="<?= BASE_URL ?>#">
-                <img src="assets/admin/assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Anna Nelson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>6 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="<?= BASE_URL ?>#">
-                <img src="assets/admin/assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>David Muldon</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>8 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="dropdown-footer">
-              <a href="<?= BASE_URL ?>#">Show all messages</a>
-            </li>
-
-          </ul><!-- End Messages Dropdown Items -->
-
-        </li><!-- End Messages Nav -->
-
-        <li class="nav-item dropdown pe-3">
-
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="<?= BASE_URL ?>#" data-bs-toggle="dropdown">
-            <img src="assets/admin/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
-          </a><!-- End Profile Iamge Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="<?= BASE_URL ?>users-profile">
-                <i class="bi bi-person"></i>
-                <span>My Profile</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="<?= BASE_URL ?>users-profile">
-                <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="<?= BASE_URL ?>pages-faq">
-                <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="<?= BASE_URL ?>auth/logout">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
-
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
-
-      </ul>
-    </nav><!-- End Icons Navigation -->
-
-  </header><!-- End Header -->
-
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
-
-    <ul class="sidebar-nav" id="sidebar-nav">
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="<?= BASE_URL ?>index">
-          <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
+      <li class="nav-item dropdown pe-3">
+        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+          <img src="<?= BASE_URL ?>assets/admin/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+          <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span>
         </a>
-      </li><!-- End Dashboard Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="<?= BASE_URL ?>#">
-          <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
           <li>
-            <a href="<?= BASE_URL ?>components-alerts">
-              <i class="bi bi-circle"></i><span>Alerts</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL ?>components-accordion">
-              <i class="bi bi-circle"></i><span>Accordion</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL ?>components-badges">
-              <i class="bi bi-circle"></i><span>Badges</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL ?>components-breadcrumbs">
-              <i class="bi bi-circle"></i><span>Breadcrumbs</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL ?>components-buttons">
-              <i class="bi bi-circle"></i><span>Buttons</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL ?>components-cards">
-              <i class="bi bi-circle"></i><span>Cards</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL ?>components-carousel">
-              <i class="bi bi-circle"></i><span>Carousel</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL ?>components-list-group">
-              <i class="bi bi-circle"></i><span>List group</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL ?>components-modal">
-              <i class="bi bi-circle"></i><span>Modal</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL ?>components-tabs">
-              <i class="bi bi-circle"></i><span>Tabs</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL ?>components-pagination">
-              <i class="bi bi-circle"></i><span>Pagination</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL ?>components-progress">
-              <i class="bi bi-circle"></i><span>Progress</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL ?>components-spinners">
-              <i class="bi bi-circle"></i><span>Spinners</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL ?>components-tooltips">
-              <i class="bi bi-circle"></i><span>Tooltips</span>
+            <a class="dropdown-item d-flex align-items-center" href="<?= BASE_URL ?>auth/logout">
+              <i class="bi bi-box-arrow-right"></i>
+              <span>Sign Out</span>
             </a>
           </li>
         </ul>
-      </li><!-- End Components Nav -->
-
-      <!-- ================= PRODUCTS ================= -->
-      <li class="nav-item">
-
-        <a class="nav-link <?= isOpenMenu(['product'], $currentUrl) ? '' : 'collapsed' ?>"
-          data-bs-toggle="collapse"
-          href="#products-nav">
-
-          <i class="bi bi-box"></i>
-          <span>Products</span>
-          <i class="bi bi-chevron-down ms-auto"></i>
-
-        </a>
-
-        <ul id="products-nav"
-          class="nav-content collapse <?= isOpenMenu(['product'], $currentUrl) ? 'show' : '' ?>">
-
-          <li>
-            <a class="<?= isActiveUrl('product/products', $currentUrl) ?>"
-              href="<?= BASE_URL . 'product/products' ?>">
-              <i class="bi bi-circle"></i>
-              <span>All Products</span>
-            </a>
-          </li>
-
-          <li>
-            <a class="<?= isActiveUrl('product/create', $currentUrl) ?>"
-              href="<?= BASE_URL . 'product/create' ?>">
-              <i class="bi bi-circle"></i>
-              <span>Add Product</span>
-            </a>
-          </li>
-
-        </ul>
-
-      </li><!-- End Product Nav -->
-
-
-      <!-- ================= ORDERS ================= -->
-      <li class="nav-item">
-
-        <a class="nav-link <?= isOpenMenu(['order'], $currentUrl) ? '' : 'collapsed' ?>"
-          data-bs-toggle="collapse"
-          href="#orders-nav">
-
-          <i class="bi bi-cart"></i>
-          <span>Orders</span>
-          <i class="bi bi-chevron-down ms-auto"></i>
-
-        </a>
-
-        <ul id="orders-nav"
-          class="nav-content collapse <?= isOpenMenu(['order'], $currentUrl) ? 'show' : '' ?>">
-
-          <li>
-            <a class="<?= isActiveUrl('order/orders', $currentUrl) ?>"
-              href="<?= BASE_URL . 'order/orders' ?>">
-              <i class="bi bi-circle"></i>
-              <span>All Orders</span>
-            </a>
-          </li>
-
-        </ul>
-
-      </li><!-- End Order Nav -->
-
-
-      <!-- ================= USERS (AUTH MANAGEMENT) ================= -->
-      <li class="nav-item">
-
-        <a class="nav-link <?= isOpenMenu(['user'], $currentUrl) ? '' : 'collapsed' ?>"
-          data-bs-toggle="collapse"
-          href="#auth-nav">
-
-          <i class="bi bi-shield-lock"></i>
-          <span>Users</span>
-          <i class="bi bi-chevron-down ms-auto"></i>
-
-        </a>
-
-        <ul id="auth-nav"
-          class="nav-content collapse <?= isOpenMenu(['user'], $currentUrl) ? 'show' : '' ?>">
-
-          <!-- All Users -->
-          <li>
-            <a class="<?= isActiveUrl('user/users', $currentUrl) ?>"
-              href="<?= BASE_URL . 'user/users' ?>">
-              <i class="bi bi-circle"></i>
-              <span>All Users</span>
-            </a>
-          </li>
-
-          <!-- Add User -->
-          <li>
-            <a class="<?= isActiveUrl('user/create', $currentUrl) ?>"
-              href="<?= BASE_URL . 'user/create' ?>">
-              <i class="bi bi-circle"></i>
-              <span>Add User</span>
-            </a>
-          </li>
-
-        </ul>
-
-      </li><!-- End User Management Nav -->
-
-
-      <!-- ================= CONTACT ================= -->
-      <li class="nav-item">
-
-        <a class="nav-link <?= isOpenMenu(['contact'], $currentUrl) ? '' : 'collapsed' ?>"
-          data-bs-toggle="collapse"
-          href="#contact-nav">
-
-          <i class="bi bi-envelope"></i>
-          <span>Contact</span>
-          <i class="bi bi-chevron-down ms-auto"></i>
-
-        </a>
-
-        <ul id="contact-nav"
-          class="nav-content collapse <?= isOpenMenu(['contact'], $currentUrl) ? 'show' : '' ?>">
-
-          <li>
-            <a class="<?= isActiveUrl('contact/messages', $currentUrl) ?>"
-              href="<?= BASE_URL . 'contact/messages' ?>">
-              <i class="bi bi-circle"></i>
-              <span>Messages</span>
-            </a>
-          </li>
-
-        </ul>
-
-      </li><!-- End Contact Nav -->
-
-<!-- End Tables Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="<?= BASE_URL ?>#">
-          <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="<?= BASE_URL ?>charts-chartjs">
-              <i class="bi bi-circle"></i><span>Chart.js</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL ?>charts-apexcharts">
-              <i class="bi bi-circle"></i><span>ApexCharts</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL ?>charts-echarts">
-              <i class="bi bi-circle"></i><span>ECharts</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Charts Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="<?= BASE_URL ?>#">
-          <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="<?= BASE_URL ?>icons-bootstrap">
-              <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL ?>icons-remix">
-              <i class="bi bi-circle"></i><span>Remix Icons</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?= BASE_URL ?>icons-boxicons">
-              <i class="bi bi-circle"></i><span>Boxicons</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Icons Nav -->
-
-      <li class="nav-heading">Pages</li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="<?= BASE_URL ?>users-profile">
-          <i class="bi bi-person"></i>
-          <span>Profile</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="<?= BASE_URL ?>pages-faq">
-          <i class="bi bi-question-circle"></i>
-          <span>F.A.Q</span>
-        </a>
-      </li><!-- End F.A.Q Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="<?= BASE_URL ?>pages-contact">
-          <i class="bi bi-envelope"></i>
-          <span>Contact</span>
-        </a>
-      </li><!-- End Contact Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="<?= BASE_URL ?>pages-register">
-          <i class="bi bi-card-list"></i>
-          <span>Register</span>
-        </a>
-      </li><!-- End Register Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="<?= BASE_URL ?>pages-login">
-          <i class="bi bi-box-arrow-in-right"></i>
-          <span>Login</span>
-        </a>
-      </li><!-- End Login Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="<?= BASE_URL ?>pages-error-404">
-          <i class="bi bi-dash-circle"></i>
-          <span>Error 404</span>
-        </a>
-      </li><!-- End Error 404 Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="<?= BASE_URL ?>pages-blank">
-          <i class="bi bi-file-earmark"></i>
-          <span>Blank</span>
-        </a>
-      </li><!-- End Blank Page Nav -->
+      </li>
 
     </ul>
+  </nav>
 
-  </aside><!-- End Sidebar-->
+</header>
+<!-- End Header -->
+
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+  <ul class="sidebar-nav" id="sidebar-nav">
+
+    <!-- Dashboard -->
+    <li class="nav-item">
+      <a class="nav-link <?= $productOpen || $orderOpen || $userOpen || $contactOpen ? 'collapsed' : '' ?>"
+         href="<?= BASE_URL ?>admin/index">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+
+    <!-- ===== PRODUCTS ===== -->
+    <li class="nav-item">
+      <a class="nav-link <?= $productOpen ? '' : 'collapsed' ?>"
+         data-bs-toggle="collapse"
+         data-bs-target="#products-nav"
+         href="javascript:void(0)"
+         aria-expanded="<?= $productOpen ? 'true' : 'false' ?>">
+        <i class="bi bi-box"></i>
+        <span>Products</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="products-nav"
+          class="nav-content collapse <?= $productOpen ? 'show' : '' ?>">
+        <li>
+          <a class="<?= isActive('product/products', $currentUrl) ?>"
+             href="<?= BASE_URL ?>product/products">
+            <i class="bi bi-circle"></i><span>All Products</span>
+          </a>
+        </li>
+        <li>
+          <a class="<?= isActive('product/create', $currentUrl) ?>"
+             href="<?= BASE_URL ?>product/create">
+            <i class="bi bi-circle"></i><span>Add Product</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <!-- ===== ORDERS ===== -->
+    <li class="nav-item">
+      <a class="nav-link <?= $orderOpen ? '' : 'collapsed' ?>"
+         data-bs-toggle="collapse"
+         data-bs-target="#orders-nav"
+         href="javascript:void(0)"
+         aria-expanded="<?= $orderOpen ? 'true' : 'false' ?>">
+        <i class="bi bi-cart"></i>
+        <span>Orders</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="orders-nav"
+          class="nav-content collapse <?= $orderOpen ? 'show' : '' ?>">
+        <li>
+          <a class="<?= isActive('order/orders', $currentUrl) ?>"
+             href="<?= BASE_URL ?>order/orders">
+            <i class="bi bi-circle"></i><span>All Orders</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <!-- ===== USERS ===== -->
+    <li class="nav-item">
+      <a class="nav-link <?= $userOpen ? '' : 'collapsed' ?>"
+         data-bs-toggle="collapse"
+         data-bs-target="#users-nav"
+         href="javascript:void(0)"
+         aria-expanded="<?= $userOpen ? 'true' : 'false' ?>">
+        <i class="bi bi-people"></i>
+        <span>Users</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="users-nav"
+          class="nav-content collapse <?= $userOpen ? 'show' : '' ?>">
+        <li>
+          <a class="<?= isActive('user/users', $currentUrl) ?>"
+             href="<?= BASE_URL ?>user/users">
+            <i class="bi bi-circle"></i><span>All Users</span>
+          </a>
+        </li>
+        <li>
+          <a class="<?= isActive('user/create', $currentUrl) ?>"
+             href="<?= BASE_URL ?>user/create">
+            <i class="bi bi-circle"></i><span>Add User</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <!-- ===== CONTACT ===== -->
+    <li class="nav-item">
+      <a class="nav-link <?= $contactOpen ? '' : 'collapsed' ?>"
+         data-bs-toggle="collapse"
+         data-bs-target="#contact-nav"
+         href="javascript:void(0)"
+         aria-expanded="<?= $contactOpen ? 'true' : 'false' ?>">
+        <i class="bi bi-envelope"></i>
+        <span>Contact</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="contact-nav"
+          class="nav-content collapse <?= $contactOpen ? 'show' : '' ?>">
+        <li>
+          <a class="<?= isActive('contact/messages', $currentUrl) ?>"
+             href="<?= BASE_URL ?>contact/messages">
+            <i class="bi bi-circle"></i><span>Messages</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+  </ul>
+
+</aside>
+<!-- End Sidebar -->
+
+<?php
+/*
+ * IMPORTANT — put this script at the BOTTOM of the page (before </body>),
+ * AFTER bootstrap.bundle.min.js and main.js have loaded.
+ *
+ * NiceAdmin main.js finds every .nav-content and adds data-bs-parent="#sidebar-nav"
+ * which converts the sidebar into a strict accordion (only one section open at a time).
+ * This fix runs AFTER main.js and removes that attribute so each section
+ * can open/close independently.
+ *
+ * We also call bootstrap.Collapse.getOrCreateInstance() to register the
+ * current page's open section so Bootstrap knows its state without needing
+ * a user click first.
+ */
+?>
+
+<!-- Vendor JS Files -->
+<script src="<?= BASE_URL ?>assets/admin/assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="<?= BASE_URL ?>assets/admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?= BASE_URL ?>assets/admin/assets/vendor/chart.js/chart.umd.js"></script>
+<script src="<?= BASE_URL ?>assets/admin/assets/vendor/echarts/echarts.min.js"></script>
+<script src="<?= BASE_URL ?>assets/admin/assets/vendor/quill/quill.min.js"></script>
+<script src="<?= BASE_URL ?>assets/admin/assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="<?= BASE_URL ?>assets/admin/assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="<?= BASE_URL ?>assets/admin/assets/vendor/php-email-form/validate.js"></script>
+<script src="<?= BASE_URL ?>assets/admin/assets/js/main.js"></script>
+
+<script>
+/*
+ * Run AFTER main.js.
+ *
+ * Step 1: Remove data-bs-parent that main.js injected — this breaks
+ *         accordion locking so multiple menus can be open at once.
+ *
+ * Step 2: For the currently-open section (PHP added class="show"),
+ *         call getOrCreateInstance() so Bootstrap registers it properly
+ *         and doesn't close it on first toggle.
+ */
+document.addEventListener('DOMContentLoaded', function () {
+
+  // Step 1 — strip accordion parent from all sidebar collapse targets
+  document.querySelectorAll('#sidebar-nav .nav-content').forEach(function (el) {
+    el.removeAttribute('data-bs-parent');
+  });
+
+  // Step 2 — register each open section with Bootstrap Collapse
+  document.querySelectorAll('#sidebar-nav .nav-content.show').forEach(function (el) {
+    bootstrap.Collapse.getOrCreateInstance(el, { toggle: false });
+  });
+
+});
+</script>

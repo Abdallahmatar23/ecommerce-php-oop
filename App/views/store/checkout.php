@@ -4,7 +4,7 @@
         <div class="alert alert-danger"><?= $error ?></div>
     <?php endif; ?>
     
-    <form action="<?= BASE_URL ?>checkout" method="POST" class="col-md-6 mt-4">
+    <form action="<?= BASE_URL ?>checkout/checkout" method="POST" class="col-md-6 mt-4">
         <div class="mb-3">
             <label for="shipping_address" class="form-label">Shipping Address</label>
             <input type="text" name="shipping_address" id="shipping_address" class="form-control" placeholder="e.g. Cairo, Nasr City" required>
