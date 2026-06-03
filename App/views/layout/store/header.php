@@ -96,7 +96,7 @@ use App\Core\Session\Session;
                                         <span class="cart_quantity"><?= $totalQty ?></span>
                                         <!--mini cart-->
                                         <div class="mini_cart">
-                                           
+                                        
 
                                             <?php if (isset($cart_items)): ?>
 
@@ -114,9 +114,7 @@ use App\Core\Session\Session;
                                                         </div>
                                                     </div>
                                                 <?php endforeach; ?>
-
-
-
+ 
                                                 <div class="mini_cart_table">
                                                     <div class="cart_total">
                                                         <span>Sub total:</span>
@@ -131,36 +129,7 @@ use App\Core\Session\Session;
                                                 <h4 class="text-center bg-warning m-2 p-2"> cart is not exists</h4>
                                             <?php endif; ?>
 
-                                                <?php foreach ($cart_items as $cart_item):  ?>
-                                                    <div class="cart_item">
-                                                        <div class="cart_img">
-                                                            <a href="#"><img src="<?= BASE_URL ?><?= $cart_item->getProduct()->getImage() ?>" alt=""></a>
-                                                        </div>
-                                                        <div class="cart_info">
-                                                            <a href="#"><?= $cart_item->getProduct()->getName() ?></a>
-                                                            <p>Qty: <?= $cart_item->getQty() ?> X <span> $<?= $cart_item->getProduct()->getPrice() ?> </span></p>
-                                                        </div>
-                                                        <div class="cart_remove">
-                                                            <a href="#"><i class="ion-android-close"></i></a>
-                                                        </div>
-                                                    </div>
-                                                <?php endforeach; ?>
-
-
-
-                                                <div class="mini_cart_table">
-                                                    <div class="cart_total">
-                                                        <span>Sub total:</span>
-                                                        <span class="price">$<?= $total ?></span>
-                                                    </div>
-                                                    <div class="cart_total mt-10">
-                                                        <span>total:</span>
-                                                        <span class="price">$<?= $total ?></span>
-                                                    </div>
-                                                </div>
-                                            <?php else: ?>
-                                                <h4 class="text-center bg-warning m-2 p-2"> cart is not exists</h4>
-                                            <?php endif; ?>
+                                                
                                             <div class="mini_cart_footer">
                                                 <div class="cart_button">
                                                     <a href="<?= BASE_URL ?>page/cart">View cart</a>

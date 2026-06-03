@@ -6,7 +6,7 @@ namespace App\Repositories;
 
 use App\Core\Model;
 use App\Models\CartItem;
-use App\Models\ProductRepository;
+use App\Repositories\ProductRepository;
 
 class CartItemRepository extends Model
 {

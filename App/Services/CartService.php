@@ -5,7 +5,7 @@ namespace App\Services;
 
 use App\Core\Session\Session;
 use App\Models\CartItem;
-use App\Models\ProductRepository;
+use App\Repositories\ProductRepository;
 use App\Repositories\CartItemRepository;
 use App\Repositories\CartRepository;
 
