@@ -53,6 +53,8 @@ class CheckoutController extends Controller
 
         // نجح — صفّي الـ cart وروّح على صفحة النجاح
         $this->cartService->clearAll();
+        // var_dump('ssssss');
+        // die;
         redirect("order/success/" . $result);
     }
 }

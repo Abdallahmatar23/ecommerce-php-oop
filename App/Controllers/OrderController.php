@@ -4,8 +4,9 @@ namespace App\Controllers;
 
 use App\Core\Controller;
 use App\Core\Session\Session;
-use App\Repositories\OrderRepository;
+use App\Models\Order;
 use App\Repositories\OrderItemRepository;
+use App\Repositories\OrderRepository;
 
 class OrderController extends Controller
 {
@@ -64,9 +65,14 @@ class OrderController extends Controller
             redirect("login");
         }
 
+
         $order = $this->orderRepo->getById($orderId);
 
-        if (!$order || $order->getId() != Session::get("user")['id']) {
+        if (!$order || $order->getUserId() != Session::get("user")['id']) {
+            // var_dump("$orderId");
+            // var_dump(Session::get("user")['id']);
+            // var_dump($order->getUserId());
+            // die;
             return $this->view("store/404");
         }
 

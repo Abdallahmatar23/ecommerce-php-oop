@@ -13,9 +13,7 @@ class OrderRepository extends Model
         parent::__construct();
     }
 
-    // ------------------------------------------------
-    // helpers
-    // ------------------------------------------------
+
 
     private function mapToObject(array $row): Order
     {
@@ -31,16 +29,13 @@ class OrderRepository extends Model
         );
     }
 
-    // ------------------------------------------------
-    // READ
-    // ------------------------------------------------
 
     /** @return Order[] */
     public function getAll(): array
     {
         $sql  = "SELECT orders.*, users.name AS user_name
-                 FROM orders
-                 JOIN users ON orders.user_id = users.id
+                FROM orders
+                JOIN users ON orders.user_id = users.id
                  ORDER BY orders.created_at DESC";
 
         $rows = $this->fetchAll($sql, []);
@@ -69,9 +64,6 @@ class OrderRepository extends Model
         return array_map(fn($r) => $this->mapToObject($r), $rows);
     }
 
-    // ------------------------------------------------
-    // WRITE
-    // ------------------------------------------------
 
     /**
      * @return int|false|string   orderId | false | "stock_error"
@@ -106,7 +98,7 @@ class OrderRepository extends Model
 
             $this->query(
                 "INSERT INTO orders (user_id, total_price, shipping_address, payment_method, status)
-                 VALUES (?, ?, ?, ?, 'pending')",
+                VALUES (?, ?, ?, ?, 'pending')",
                 [$userId, $totalPrice, $shippingAddress, $paymentMethod]
             );
             $orderId = (int) $this->lastInsertId();
@@ -114,7 +106,7 @@ class OrderRepository extends Model
             foreach ($cartItems as $item) {
                 $this->query(
                     "INSERT INTO order_items (order_id, product_id, quantity, price)
-                     VALUES (?, ?, ?, ?)",
+                    VALUES (?, ?, ?, ?)",
                     [$orderId, $item['product_id'], $item['quantity'], $item['price']]
                 );
                 $this->query(

@@ -1,5 +1,7 @@
-<?php var_dump('ss');
-die;?> 
+<?php 
+//var_dump('ss');
+// die;
+?> 
 <!--breadcrumbs area start-->
 <div class="breadcrumbs_area">
     <div class="container">
